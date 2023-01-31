@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_messages_community">
+
+    <fragment
+        android:id="@+id/nav_messages_community"
+        android:name="com.friendzrandroid.home.fragment.whiteLabel.ui.messages.CommunityMessagesFragment"
+        android:label="@string/title_inbox"
+        tools:layout="@layout/fragment_community_messages">
+
+
+        <action
+            android:id="@+id/action_navigation_to_Chat"
+            app:destination="@id/nav_chat_community"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_navigation_Inbox_to_myFriendsFragment"
+            app:destination="@id/communityAllFriendsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="myapp://chatDetails" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_chat_community"
+        android:name="com.friendzrandroid.home.fragment.whiteLabel.ui.chat.CommunityChatFragment"
+        android:label="@string/title_chat"
+        tools:layout="@layout/fragment_community_chat">
+
+        <argument
+            android:name="chatID"
+            app:argType="string"
+            app:nullable="false" />
+
+        <argument
+            android:name="chatImage"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="chatName"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="chatIsEvent"
+            app:argType="boolean"
+            app:nullable="false" />
+
+        <argument
+            android:name="myEvent"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <argument
+            android:name="isFriend"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <argument
+            android:name="chatIsGroup"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+        <argument
+            android:name="leftChat"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
+            android:name="leftGroup"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
+            android:name="isAdminGroup"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <argument
+            android:name="isCommunityGroup"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_nav_chat_community_to_communityGroupDetailsFragment"
+            app:destination="@id/communityGroupDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+
+
+        <action
+            android:id="@+id/action_nav_chat_community_to_communityMemberProfileFragment"
+            app:destination="@id/communityMemberProfileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+
+            />
+        <action
+            android:id="@+id/action_navigation_Chat_to_reportFragment"
+            app:destination="@id/reportFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+
+        <action
+            android:id="@+id/action_editEventFragment_to_communityEventAttendenceFragment"
+            app:destination="@id/communityEventAttendenceFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+
+
+<!--        <action-->
+<!--            android:id="@+id/action_navigation_Chat_to_eventDetailsFragment"-->
+<!--            app:destination="@id/eventDetailsFragment"-->
+<!--            app:enterAnim="@anim/slide_in_right"-->
+<!--            app:exitAnim="@anim/slide_out_left"-->
+<!--            app:popEnterAnim="@anim/slide_in_left"-->
+<!--            app:popExitAnim="@anim/slide_out_right" />-->
+
+
+
+        <!--        _____-->
+
+
+
+
+
+
+
+
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/communityEventAttendenceFragment"
+        android:name="com.friendzrandroid.home.fragment.home.events.eventAttendances.EventAttendancesFragment"
+        android:label="edit_event_fragment"
+        tools:layout="@layout/fragment_event_attendance">
+        <argument
+            android:name="eventID"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="isEventAdmin"
+            android:defaultValue="false"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_community_people"
+        android:name="com.friendzrandroid.home.fragment.whiteLabel.ui.communityGroup.CommunityAddPeoplesFragment"
+        android:label="@string/my_friends"
+        tools:layout="@layout/fragment_community_people">
+        <argument
+            android:name="chatId"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="listOfSelectedUsers"
+            android:defaultValue="@null"
+            app:argType="string[]"
+            app:nullable="true" />
+
+        <argument
+            android:name="isEditEvent"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+        <action
+            android:id="@+id/action_friendsFragment_to_chatFragment"
+            app:destination="@id/nav_chat_community"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_nav_community_people_to_communityCreateGroupFragment"
+            app:destination="@id/communityCreateGroupFragment" />
+
+        <action
+            android:id="@+id/action_communityPeoplesFragment_to_communityCreateGroupFragment"
+            app:destination="@id/communityCreateGroupFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/communityAllFriendsFragment"
+        android:name="com.friendzrandroid.home.fragment.whiteLabel.ui.CommunityAllFriendsFragment"
+        android:label="CommunityAllFriendsFragment"
+
+        >
+
+        <action
+            android:id="@+id/action_friendsFragment_to_chatFragment"
+            app:destination="@id/nav_chat_community"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_myFriendsFragment_to_createGroupFragment"
+            app:destination="@id/communityCreateGroupFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/communityCreateGroupFragment"
+        android:name="com.friendzrandroid.home.fragment.whiteLabel.ui.communityGroup.CommunityCreateGroupFragment"
+        android:label="CommunityCreateGroupFragment" />
+
+
+
+    <fragment
+        android:id="@+id/communityGroupDetailsFragment"
+        android:name="com.friendzrandroid.home.fragment.whiteLabel.ui.communityGroup.CommunityGroupDetailsFragment"
+        android:label="CommunityGroupDetailsFragment">
+
+        <argument
+            android:name="chatId"
+            app:argType="string" />
+        <argument
+            android:name="isGroupAdmin"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <argument
+            android:name="isCommunityGroup"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_detailsGroupChatFragment_to_navigation_Inbox"
+            app:destination="@id/nav_messages_community"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_detailsGroupChatFragment_to_communityPeopleFragment"
+            app:destination="@id/nav_community_people"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/communityMemberProfileFragment"
+        android:name="com.friendzrandroid.home.fragment.whiteLabel.ui.userProfile.CommunityMemberProfileFragment"
+        android:label="fragment_community_member_profile"
+        app:enterAnim="@anim/slide_in_right"
+
+        app:exitAnim="@anim/slide_out_left"
+        app:popEnterAnim="@anim/slide_in_left"
+        app:popExitAnim="@anim/slide_out_right"
+        tools:layout="@layout/fragment_community_member_profile">
+        <argument
+            android:name="userID"
+            android:defaultValue=""
+            app:argType="string" />
+        <action
+            android:id="@+id/action_communityMemberProfileFragment_to_nav_chat_community"
+            app:destination="@id/nav_chat_community"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+
+        <action
+            android:id="@+id/action_communityMemberProfileFragment_to_communityReportFragment"
+            app:destination="@id/communityReportFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_communityMemberProfileFragment_to_nav_messages_community"
+            app:destination="@id/nav_messages_community"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/nav_messages_community"
+            app:popUpToInclusive="true"
+
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/communityReportFragment"
+        android:name="com.friendzrandroid.home.fragment.whiteLabel.ui.communityReport.CommunityReportFragment"
+        android:label="CommunityReportFragment"
+
+
+        >
+        <argument
+            android:name="userId"
+            app:argType="string" />
+        <argument
+            android:name="reportType"
+            app:argType="integer" />
+
+    </fragment>
+
+
+
+</navigation>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        tools:context=".splash.presentation.fragment.Intro1PeopleFragment">
+
+
+        <TextView
+            android:id="@+id/textView"
+
+            android:layout_width="278dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="?actionBarSize"
+            android:fontFamily="@font/montserrat_semibold"
+            android:text="Welcome"
+
+
+            android:textAlignment="viewStart"
+            android:textColor="@color/primary_color_forLandingPag"
+            android:textSize="28sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="0dp"
+
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="30dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="@string/intro_welcome_message2"
+
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+        <VideoView
+            android:id="@+id/gifImageView"
+            android:layout_width="0dp"
+
+            android:layout_height="600dp"
+            android:layout_marginTop="90dp"
+            android:layout_marginBottom="60dp"
+            android:background="@android:color/transparent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:layout_constraintVertical_bias="0.57" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+
+

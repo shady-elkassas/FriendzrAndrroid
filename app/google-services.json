@@ -1,0 +1,58 @@
+{
+  "project_info": {
+    "project_number": "43837105804",
+    "project_id": "friendzr-1631017594822",
+    "storage_bucket": "friendzr-1631017594822.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:43837105804:android:97713ddc79cedfbac3bda9",
+        "android_client_info": {
+          "package_name": "com.friendzrandroid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "43837105804-drl7sqkat7pohcgtufvea4gsrd1emmi5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.friendzrandroid",
+            "certificate_hash": "123c3528d35721cb90001f6494dbae8eab0a5e05"
+          }
+        },
+        {
+          "client_id": "43837105804-kdpc2qri94q8abej9vk668e60pfmf1ea.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.friendzrandroid",
+            "certificate_hash": "78874daab782116a7fc25cb1565c431104f9a418"
+          }
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBli4ClmE36SugCuvHCx4yNeaCTMLhEAEI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "43837105804-ig1l1iuss75acton2gk17rh2o0oim3qr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "43837105804-he5jci75mbf7jrhush4cps45plripdvp.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.FriendzSocialMediaLimited.Friendzr-ios"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    tools:context=".home.fragment.home.requestes.RequestsFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/gray_bg">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rl_inbox_appbarContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:paddingTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userImage"
+                android:layout_width="31dp"
+                android:layout_height="31dp"
+                android:layout_marginStart="25dp"
+                android:src="@drawable/default_user"
+                app:civ_border_color="#FF000000"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_inbox_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_semibold"
+                android:gravity="center"
+                android:text="@string/title_requests"
+                android:textColor="@color/inactive_black"
+                app:layout_constraintBottom_toBottomOf="@id/userImage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/userImage" />
+
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tab_request_type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginBottom="8dp"
+                android:background="@drawable/shape_tab_layout"
+                android:gravity="center"
+                app:layout_constraintBottom_toTopOf="@id/viewBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_inbox_title"
+                app:tabIndicator="@drawable/shape_send_request"
+                app:tabIndicatorColor="@color/primary_color"
+                app:tabIndicatorFullWidth="true"
+                app:tabIndicatorGravity="center"
+                app:tabIndicatorHeight="40dp"
+                app:tabMode="fixed"
+                app:tabRippleColor="@android:color/transparent"
+                app:tabTextAppearance="@style/MyTabLayoutTextStyle">
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/requests"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_received" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:id="@+id/sent_requests"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/title_requests_sent" />
+
+
+            </com.google.android.material.tabs.TabLayout>
+
+
+            <View
+                android:id="@+id/viewBar"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/view_bg"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_inbox_title"
+                app:layout_constraintVertical_bias="1" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/totalRequestsTitle"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="31dp"-->
+        <!--            android:layout_marginTop="21dp"-->
+        <!--            android:fontFamily="@font/montserrat_semibold"-->
+        <!--            android:text="@string/total_requests"-->
+        <!--            android:textColor="@color/title_black"-->
+        <!--            android:textSize="16sp"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/rl_inbox_appbarContainer" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/totalRequestsValue"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="13dp"-->
+        <!--            android:fontFamily="@font/montserrat_semibold"-->
+        <!--            android:text="0"-->
+        <!--            android:textColor="@color/primary_color"-->
+        <!--            android:textSize="16sp"-->
+        <!--            app:layout_constraintBottom_toBottomOf="@+id/totalRequestsTitle"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/totalRequestsTitle"-->
+        <!--            app:layout_constraintTop_toTopOf="@+id/totalRequestsTitle"-->
+        <!--            app:layout_constraintVertical_bias="0.50" />-->
+
+        <LinearLayout
+            android:id="@+id/no_data_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="#f3f7f3"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rl_inbox_appbarContainer">
+
+            <ImageView
+                android:id="@+id/img_noData"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/ic_no_data_requests"
+                app:layout_constraintBottom_toTopOf="@+id/noDataFoundTxt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.85" />
+
+
+            <TextView
+                android:id="@+id/noDataFoundTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:text="@string/no_data_request"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_to_refresh_requests"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rl_inbox_appbarContainer">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/requestsRecycler"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:background="@color/gray_bg"
+                android:visibility="visible"
+                tools:itemCount="5"
+                tools:listitem="@layout/item_request" />
+
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/bannerAdView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-6206027456764756/4483859663"
+            ads:layout_constraintBottom_toBottomOf="parent"
+            ads:layout_constraintEnd_toEndOf="parent"
+            ads:layout_constraintStart_toStartOf="parent" />
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/noDataFoundTxt"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="@string/no_request_yet"-->
+        <!--            android:textColor="@color/primary_color"-->
+        <!--            android:textSize="20sp"-->
+        <!--            android:textStyle="bold"-->
+        <!--            android:visibility="gone"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/rl_inbox_appbarContainer" />-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

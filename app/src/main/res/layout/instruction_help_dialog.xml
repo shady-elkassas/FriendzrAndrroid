@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#66000000">
+
+    <RelativeLayout
+        android:id="@+id/rl_feed_appbarContainer"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/white"
+
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/userImage"
+            android:layout_width="31dp"
+            android:layout_height="31dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:visibility="gone"
+            app:civ_border_color="#FF000000" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/img_privateModes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:clickable="false"
+            android:elevation="15dp"
+            android:thumb="@drawable/switch_private_mode_thumb_with_icon_bg_selector"
+            app:track="@drawable/track_selector"
+            tools:checked="false" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/img_interestMatch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+
+            android:layout_toEndOf="@+id/img_privateModes"
+            android:clickable="false"
+            android:elevation="15dp"
+            android:thumb="@drawable/switch_interests_match"
+            app:track="@drawable/track_selector"
+            tools:checked="false" />
+
+
+        <TextView
+            android:id="@+id/tv_inbox_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:fontFamily="@font/montserrat_semibold"
+            android:gravity="center"
+            android:text="@string/title_feed"
+            android:textColor="@color/inactive_black" />
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/compass_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+
+            android:layout_gravity="center"
+            android:layout_marginEnd="16dp"
+            android:clickable="false"
+            android:elevation="15dp"
+            android:thumb="@drawable/switch_filter_button_thumb"
+            app:track="@drawable/track_selector"
+            tools:checked="false" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/inactive_gray" />
+    </RelativeLayout>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/img_mapFilter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="false"
+        android:elevation="15dp"
+
+        android:thumb="@drawable/switch_map_filter_thumb_with_icon_bg_selector"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:track="@drawable/track_selector"
+        tools:checked="false" />
+
+    <RelativeLayout
+        android:id="@+id/rl_compassMessageContainer"
+
+        android:layout_width="0dp"
+        android:layout_height="140dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/direction_view"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/start_guide_line"
+        app:layout_constraintTop_toBottomOf="@+id/view_actionbar">
+
+        <TextView
+            android:id="@+id/rl_compassMessageContainerText"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="@string/title_hint_direction"
+            android:textColor="@color/white"
+
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_MapCategoryFilterMessageContainer"
+
+        android:layout_width="0dp"
+        android:layout_height="120dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/direction_view"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/start_guide_line"
+        app:layout_constraintTop_toBottomOf="@+id/view_actionbar">
+
+        <TextView
+            android:id="@+id/rl_MapCategoryFilterMessageContainerText"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_centerInParent="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="@string/mapCategoryFilterTutorialMessage"
+            android:textColor="@color/white"
+
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_PrivateModeMessageContainer"
+
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="80dp"
+        android:background="@drawable/direction_view_flipped"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_actionbar">
+
+        <TextView
+            android:id="@+id/rl_PrivateModeMessageContainerText"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="@string/privateModeTutorialMessage"
+            android:textColor="@color/white"
+
+            />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_InterestMatchMessageContainer"
+
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="80dp"
+        android:background="@drawable/direction_view_flipped"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_actionbar">
+
+        <TextView
+            android:id="@+id/rl_InterestMatchMessageContainerText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="@string/interestMatchTutorialMessage"
+            android:textColor="@color/white"
+
+            />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border_white_circle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/montserrat_regular"
+            android:text="@string/title_next"
+            android:textColor="@color/white" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <!--        ll_mapSettings-->
+        <LinearLayout
+            android:id="@+id/ll_mapSettings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/ll_bottomSheet_event_aroundMe"
+            android:layout_alignParentEnd="true"
+
+            android:layout_marginEnd="18dp"
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <LinearLayout
+                android:id="@+id/currentLocation"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+
+                android:layout_marginBottom="5dp"
+                android:background="@drawable/shape_white_with_radius_map_add_evet"
+                android:visibility="invisible">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/ic_current_location" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="5dp"
+
+                android:background="@drawable/shape_white_with_radius_map_add_evet"
+                android:padding="7dp"
+                android:visibility="invisible">
+
+                <CheckBox
+                    android:id="@+id/changeMap"
+
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/ic_change_map"
+                    android:button="@null" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/addNewEvent"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/shape_white_with_radius_map_add_evet"
+                android:visibility="invisible">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/ic_map_add_event" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!--
+                <RelativeLayout
+                    android:id="@+id/map_instruction_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/ll_mapSettings"
+
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="64dp"
+
+                    android:layout_marginBottom="15dp"
+                    android:background="@drawable/map_instruction_view"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:id="@+id/map_instruction_containerText"
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="20dp"
+
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="40dp"
+                        android:layout_marginBottom="50dp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="@string/title_hint_direction"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/white" />
+                </RelativeLayout>
+        -->
+        <LinearLayout
+            android:id="@+id/map_instruction_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/ll_mapSettings"
+            android:layout_marginStart="32dp"
+
+            android:layout_marginEnd="64dp"
+            android:layout_marginBottom="15dp"
+
+            android:background="@drawable/map_instruction_view"
+            android:orientation="horizontal"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/map_instruction_containerText"
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="20dp"
+
+                android:layout_marginBottom="20dp"
+                android:layout_weight="5"
+                android:fontFamily="@font/montserrat_regular"
+                android:gravity="center|start"
+                android:text="@string/title_hint_instruction_map"
+                android:textColor="@color/white" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:textColor="@color/white"
+                android:visibility="invisible" />
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/map_instruction_nearByEvent_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/ll_bottomSheet_event_aroundMe"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="64dp"
+
+            android:layout_marginBottom="15dp"
+
+            android:background="@drawable/shape_round_green"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/map_instruction_nearByEvent_containerText"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginBottom="30dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/map_nearBy_Instructions"
+                android:textAlignment="viewStart"
+                android:textColor="@color/white" />
+        </RelativeLayout>
+
+        <!--nearbyEvent-->
+        <LinearLayout
+            android:id="@+id/ll_bottomSheet_event_aroundMe"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/nav_view"
+            android:background="@drawable/shape_round_top_events_around_me"
+            android:orientation="vertical"
+            android:visibility="invisible"
+
+            >
+
+            <LinearLayout
+                android:id="@+id/llExploarMoreHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/arrow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="3dp"
+                    android:src="@drawable/ic_up_arrow" />
+
+                <TextView
+                    android:id="@+id/tv_map_bottom_sheet_event_around_me_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="-4dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="@string/nearByEvent"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_map_bottom_sheet_event_around_me_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/noDataFoundTxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:text="@string/noData"
+
+                android:textColor="@color/primary_color"
+                android:visibility="gone" />
+
+
+        </LinearLayout>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_view"
+            style="@style/bottomNavigationView"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+
+            android:layout_marginEnd="0dp"
+            android:background="#F5F5F5"
+            android:visibility="invisible"
+            app:labelVisibilityMode="labeled"
+
+            app:menu="@menu/bottom_nav_menu" />
+
+
+    </RelativeLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/start_guide_line"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/horizontal_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.16" />
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bottom_guide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <View
+        android:id="@+id/view_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!--        <ImageView-->
+    <!--            android:id="@+id/imageView5"-->
+    <!--            android:layout_width="match_parent"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:src="@drawable/direction_view"-->
+    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--            app:layout_constraintEnd_toEndOf="parent"-->
+    <!--            app:layout_constraintStart_toStartOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

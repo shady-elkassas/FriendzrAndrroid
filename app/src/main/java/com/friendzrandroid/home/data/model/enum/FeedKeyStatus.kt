@@ -1,0 +1,25 @@
+package com.friendzrandroid.home.data.model.enum
+
+enum class FeedKeyStatus(val key:Int) {
+    BASE_STATE(-1),
+    NORMAL_FEED_STATE(0),
+    YOU_SENT_REQUEST(1),
+    OTHER_USER_SEND_REQUEST(2),
+    ACCEPT_FRIEND_REQUEST(2),
+    IS_FRIEND(3),
+    YOU_BLOCK_USER(4),
+    OTHER_USER_BLOCKED_YOU(5),
+//    UPDATE_ACCEPT_REQUEST(2000),
+    UPDATE_DECLINED_REQUEST(6)
+
+
+//    BASE_STATE(-1),
+//    NORMAL_FEED_STATE(0),
+//    YOU_SENT_REQUEST(1),
+//    OTHER_USER_SEND_REQUEST(2),
+//    IS_FRIEND(3),
+//    YOU_BLOCK_USER(4),
+//    OTHER_USER_BLOCKED_YOU(5),
+////    UPDATE_ACCEPT_REQUEST(2000),
+//    UPDATE_DECLINED_REQUEST(2001)
+}

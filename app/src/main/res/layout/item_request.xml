@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmerLoading"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginBottom="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/userImage"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="16dp"
+                android:src="@color/profileGray"
+                android:layout_marginBottom="16dp"
+                app:civ_border_color="#FF000000" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="16dp"
+
+                android:layout_weight="1"
+
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/displayUserNameTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:lines="1"
+                    android:textAlignment="viewStart"
+                    android:textColor="@color/title_black"
+                    android:textSize="14sp" />
+
+
+                <TextView
+                    android:id="@+id/userNameTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textColor="@color/primary_color"
+                    android:textSize="10sp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/requestDateTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:lines="1"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="5dp"
+                    android:gravity="center"
+android:layout_marginEnd="10dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ProgressBar
+                        android:id="@+id/feed_interests_match_progress_bar"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="0dp"
+                        android:layout_height="5dp"
+                        android:layout_weight="1"
+                        android:progressDrawable="@drawable/progress_bar_rounded_corner"
+                        android:progressTint="@color/primary_color"
+                        tools:progress="50" />
+
+                    <TextView
+                        android:id="@+id/tv_feed_interests_match"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+
+                        android:fontFamily="@font/montserrat_regular"
+                        android:lines="1"
+                        android:textColor="@color/black"
+                        android:textSize="8sp" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/actionsContainer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingEnd="25dp">
+
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnDeclineRequest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="15dp"
+                    android:background="@null"
+
+                    android:src="@drawable/ic_no_button"
+                    app:layout_constraintBottom_toBottomOf="@+id/cimg_requests_userImage"
+                    app:layout_constraintEnd_toStartOf="@+id/img_item_requests_confirm"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/tv_requests_userName"
+                    app:layout_constraintTop_toTopOf="@+id/cimg_requests_userImage" />
+
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/btnAcceptRequest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:visibility="visible"
+                    android:src="@drawable/ic_yes_tick"
+
+                    app:layout_constraintBottom_toBottomOf="@+id/cimg_requests_userImage"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/cimg_requests_userImage" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+</layout>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/mainContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            tools:context=".auth.presentation.view.fragment.SignupFragment">
+
+
+            <ImageView
+                android:id="@+id/iv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="?android:actionBarSize"
+                android:onClick="goBack"
+                android:src="@drawable/ic_back_white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_signup_general_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/title_signUpNow"
+                android:textColor="@color/black"
+                android:textSize="36sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/iv_back" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="64dp"
+                android:layout_height="4dp"
+                android:layout_marginTop="18dp"
+                android:background="@color/primary_color"
+                app:layout_constraintEnd_toEndOf="@+id/tv_signup_general_title"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/tv_signup_general_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_signup_general_title" />
+
+            <TextView
+                android:id="@+id/tv_signup_general_subTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="18dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/signUpSubTitleMessage"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_signup_withmail"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="48dp"
+                android:background="@drawable/shape_round_for_mail"
+                android:drawableStart="@drawable/ic_mail"
+                android:drawablePadding="13dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:onClick="showSignUpDialogScreen"
+                android:paddingStart="13dp"
+                android:text="@string/signupWithMail"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_signup_general_subTitle" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSignUpFaceBook"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_round_for_fb"
+                android:drawableStart="@drawable/ic_fb"
+                android:drawablePadding="13dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:paddingStart="13dp"
+                android:text="@string/signupWithFB"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_signup_withmail" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSignUpGoogle"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/shape_round_strok_without_bg"
+                android:drawableStart="@drawable/ic_logo_google"
+                android:drawablePadding="13dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:paddingStart="13dp"
+                android:text="@string/signupWithGoogle"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="12dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnSignUpFaceBook" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="54dp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="@string/already_have_an_account"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.34"
+                app:layout_constraintStart_toStartOf="@+id/btnSignUpGoogle"
+                app:layout_constraintTop_toBottomOf="@+id/btnSignUpGoogle"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/tv_signup_general_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:onClick="gotoLoginActivity"
+                android:text="@string/log_in"
+                android:textColor="@color/primary_color"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView4"
+                app:layout_constraintEnd_toEndOf="@+id/btnSignUpGoogle"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/textView4"
+                app:layout_constraintTop_toTopOf="@+id/textView4"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

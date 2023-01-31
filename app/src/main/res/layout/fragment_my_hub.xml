@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:id="@+id/rl_appbarContainer"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_community_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:fontFamily="@font/montserrat_semibold"
+                android:gravity="center"
+                android:text="@string/myCommunity"
+
+                android:textColor="@color/inactive_black" />
+
+
+            <ImageView
+                android:id="@+id/tv_request_title"
+                android:layout_width="wrap_content"
+
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="20dp"
+                android:src="@drawable/ic_bn_requests_larg" />
+
+            <TextView
+                android:id="@+id/tvCommunityRequestsBadge"
+                android:layout_width="14dp"
+                android:layout_height="14dp"
+
+                android:layout_above="@+id/tv_request_title"
+                android:layout_alignParentEnd="true"
+
+                android:layout_centerInParent="true"
+                android:layout_marginEnd="14dp"
+                android:layout_marginBottom="-11dp"
+                android:background="@drawable/badge"
+                android:fontFamily="@font/montserrat_semibold"
+
+
+                android:gravity="center"
+                android:text="21"
+                android:textColor="@android:color/primary_text_dark"
+                android:textSize="8sp"
+                android:visibility="visible" />
+
+            <View
+                android:id="@+id/viewBar"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="16dp"
+                android:background="@color/view_bg" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/no_data_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#f3f7f3"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/img_noData"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:src="@drawable/ic_no_data"
+                app:layout_constraintBottom_toTopOf="@+id/noDataFoundTxt"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.85" />
+
+
+            <TextView
+                android:id="@+id/noDataFoundTxt2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:text="@string/no_data_feed"
+                android:textColor="@color/black"
+
+                android:textSize="16sp"
+
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:background="@color/white"
+            android:scrollbars="none">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                tools:context=".home.fragment.home.community.CommunityGL">
+
+
+                <TextView
+                    android:id="@+id/tvConnectWithTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:gravity="start|center"
+                    android:lines="1"
+                    android:text="@string/ConnectWith"
+
+                    android:textColor="@color/title_black"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <include
+                    android:id="@+id/includeRecommendedConnection"
+                    layout="@layout/item_recommended_connection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+
+                    android:layout_marginTop="5dp"
+
+                    android:layout_marginEnd="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvConnectWithTitle" />
+
+
+                <TextView
+                    android:id="@+id/noDataFoundTxtForRecommendedConnection"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="center"
+                    android:layout_marginTop="100dp"
+                    android:layout_marginBottom="50dp"
+
+                    android:fontFamily="@font/montserrat_medium"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:text="@string/noMoreUsers"
+                    android:textColor="@color/title_black"
+                    android:textSize="16sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvConnectWithTitle"
+
+
+                    />
+
+                <View
+                    android:id="@+id/viewBar2"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@color/view_bg"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/includeRecommendedConnection" />
+
+
+                <TextView
+                    android:id="@+id/tvRecommendationEventTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:gravity="start|center"
+                    android:lines="1"
+                    android:text="@string/recommendedForYou"
+                    android:textColor="@color/title_black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/viewBar2" />
+
+
+                <include
+                    android:id="@+id/includeRecommendedEvents"
+                    layout="@layout/item_recommended_events"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+
+                    android:layout_marginEnd="20dp"
+                    android:visibility="visible"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvRecommendationEventTitle" />
+
+                <TextView
+                    android:id="@+id/noDataFoundTxtForEvent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="center"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginBottom="50dp"
+
+                    android:fontFamily="@font/montserrat_medium"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:text="@string/noMoreUsers"
+                    android:textColor="@color/title_black"
+                    android:textSize="16sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvRecommendationEventTitle"
+
+
+                    />
+
+                <!--                <Button-->
+                <!--                    android:id="@+id/btnSkipToNextRecommendationEvents"-->
+                <!--                    android:layout_width="0dp"-->
+                <!--                    android:layout_height="25dp"-->
+                <!--                    android:layout_marginStart="160dp"-->
+
+                <!--                    android:layout_marginTop="17dp"-->
+                <!--                    android:layout_marginEnd="20dp"-->
+                <!--                    android:layout_weight="1"-->
+                <!--                    android:background="@drawable/shape_round_green_8"-->
+                <!--                    android:drawableEnd="@drawable/ic_skip_arrow"-->
+                <!--                    android:fontFamily="@font/montserrat_semibold"-->
+                <!--                    android:paddingStart="7dp"-->
+                <!--                    android:paddingEnd="7dp"-->
+                <!--                    android:text="@string/skipToNextRecommendation"-->
+                <!--                    android:textAllCaps="false"-->
+                <!--                    android:textColor="@color/white"-->
+                <!--                    android:textSize="12sp"-->
+                <!--                    android:visibility="gone"-->
+                <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@+id/includeRecommendedEvents" />-->
+
+                <View
+                    android:id="@+id/viewBar3"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/view_bg"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/includeRecommendedEvents" />
+
+
+                <com.google.android.gms.ads.AdView
+                    android:id="@+id/bannerAdView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="0dp"
+
+                    app:adSize="BANNER"
+                    app:adUnitId="ca-app-pub-6206027456764756/4483859663"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/viewBar3" />
+
+
+                <View
+                    android:id="@+id/viewBar4"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="0dp"
+                    android:background="@color/view_bg"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/bannerAdView" />
+
+                <TextView
+                    android:id="@+id/tvRecentFriendsTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="7dp"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:gravity="start|center"
+                    android:lines="1"
+                    android:text="@string/youRecentlyConnectedWith"
+                    android:textColor="@color/title_black"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/viewBar4" />
+
+                <TextView
+                    android:id="@+id/noDataFoundTxt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="50dp"
+
+                    android:fontFamily="@font/montserrat_medium"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:text="@string/noMoreUsers"
+                    android:textColor="@color/title_black"
+                    android:textSize="16sp"
+                    android:visibility="gone"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvRecentFriendsTitle"
+
+
+                    />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcRecentConnectedList"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:visibility="visible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvRecentFriendsTitle" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</layout>

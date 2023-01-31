@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/event_share_data"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="6dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rl_item_event_container"
+            android:layout_width="match_parent"
+            android:layout_height="210dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <WebView
+                android:id="@+id/pdfView"
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:scrollbars="none"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <TextView
+                android:id="@+id/tv_events_eventDateAndTime"
+                style="@style/eventTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginBottom="10dp"
+                android:textAlignment="viewStart"
+                android:textColor="@color/black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:text="30/1/2020" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <!--<androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--    android:layout_width="match_parent"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:background="@drawable/shape_round"-->
+    <!--    android:padding="10dp">-->
+    <!--    <RelativeLayout-->
+    <!--        android:id="@+id/fileContaier"-->
+    <!--        android:layout_width="@dimen/d_50"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="parent"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        android:background="@drawable/ic_dark_circle"-->
+    <!--        android:layout_height="@dimen/d_50">-->
+    <!--        <TextView-->
+    <!--            android:id="@+id/fileTxt"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="PDF"-->
+    <!--            android:visibility="gone"-->
+    <!--            android:textColor="@color/white"-->
+    <!--            android:textStyle="bold"-->
+    <!--            android:layout_centerInParent="true"/>-->
+    <!--    </RelativeLayout>-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/fileTitle"-->
+    <!--        android:layout_width="wrap_content"-->
+    <!--        app:layout_constraintStart_toEndOf="@+id/fileContaier"-->
+    <!--        android:text="asfasdfasdfasdfsd"-->
+    <!--        android:lines="1"-->
+    <!--        android:textColor="@color/black"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/fileContaier"-->
+    <!--        android:layout_marginStart="10dp"-->
+    <!--        app:layout_constraintBottom_toBottomOf="@+id/fileContaier"-->
+    <!--        android:layout_height="wrap_content"/>-->
+    <!--    -->
+    <!--    -->
+    <!--    -->
+    <!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+</layout>

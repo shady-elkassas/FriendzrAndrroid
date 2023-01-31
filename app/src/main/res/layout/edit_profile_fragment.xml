@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ScrollView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+
+        android:scrollbars="none"
+        tools:context=".home.fragment.more.editProfile.EditProfileFragment">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="vertical"
+            tools:context=".home.fragment.more.editProfile.EditProfileFragment">
+
+
+            <RelativeLayout
+                android:id="@+id/rl_feed_appbarContainer"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:background="@color/white"
+
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_editProfile_save"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginEnd="15dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/shape_confirm__primary_bg"
+                    android:drawablePadding="13dp"
+                    android:fontFamily="@font/montserrat_bold"
+
+                    android:text="@string/title_save"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="12dp" />
+
+
+                <ImageView
+                    android:id="@+id/img_editProfile_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="?android:actionBarSize"
+                    android:layout_marginStart="25dp"
+                    android:src="@drawable/ic_back_black"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_inbox_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:gravity="center"
+                    android:text="@string/title_edit_profile"
+                    android:textColor="@color/inactive_black" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_alignParentBottom="true"
+                    android:background="@color/inactive_gray"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <include
+                android:id="@+id/shimmerContainer"
+                layout="@layout/edit_profile_shimmer_layout" />
+
+            <LinearLayout
+                android:id="@+id/edit_profile_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="visible">
+
+                <RelativeLayout
+                    android:id="@+id/imgUserProfileContainer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="12dp"
+                    android:background="@android:color/transparent"
+                    android:gravity="center">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgUserProfile"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:background="@drawable/ic_primary_border_circle"
+                        android:elevation="5dp"
+                        app:civ_border_color="#FF000000" />
+
+                    <ImageView
+                        android:id="@+id/imgUserProfileCamera"
+                        android:layout_width="47dp"
+                        android:layout_height="47dp"
+                        android:layout_marginStart="58dp"
+                        android:layout_marginTop="75dp"
+                        android:elevation="10dp"
+                        android:src="@drawable/ic_camers"
+                        app:layout_constraintStart_toStartOf="@+id/imgUserProfile"
+                        app:layout_constraintTop_toTopOf="@+id/imgUserProfile" />
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/change_image_state_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_medium"
+                    android:gravity="center"
+                    android:textColor="@color/blue"
+                    android:visibility="gone"
+                    tools:text="@string/title_processing"
+                    tools:visibility="visible" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/edtUserNameContainer"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="25dp"
+                    android:hint="@string/UserName"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+
+                    android:nextFocusForward="@+id/edtProfileDataContainer"
+                    android:textColorHint="@color/hintColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imgUserProfile">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtUserName"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="@drawable/shape_round_for_edt"
+                        android:padding="0dp"
+                        android:singleLine="true"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/inactive_black" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <LinearLayout
+                    android:id="@+id/edtProfileDataContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+
+                    android:layout_gravity="center"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="25dp"
+                    android:background="@drawable/shape_round_for_edt"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+
+                    app:layout_constraintTop_toBottomOf="@+id/edtUserNameContainer">
+
+                    <TextView
+                        android:id="@+id/txtProfileDate"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
+                        android:clickable="false"
+                        android:gravity="center|start"
+                        android:hint="@string/title_date"
+                        android:inputType="none"
+
+                        android:padding="0dp"
+                        android:singleLine="true"
+                        android:textColor="#141414"
+                        android:textColorHint="@color/hintColor"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/opeDataPicker"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginEnd="16dp"
+                        android:clickable="false"
+                        android:src="@drawable/ic_date" />
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/edtUniversityCodeContainer"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="25dp"
+                    android:hint="@string/universityCodeOptional"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
+                    android:nextFocusForward="@+id/rbProfileRadioGroup"
+                    android:textColorHint="@color/hintColor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imgUserProfile">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edtUniversityCode"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:background="@drawable/shape_round_for_edt"
+
+                        android:padding="0dp"
+                        android:singleLine="true"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/inactive_black" />
+
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_editProfile_addAdditionalImages"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="13dp"
+                    android:layout_marginEnd="25dp"
+                    android:background="@drawable/shape_confirm__primary_bg"
+                    android:drawablePadding="13dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/title_addAdditionalImages"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="12dp" />
+
+                <RadioGroup
+                    android:id="@+id/rbProfileRadioGroup"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="25dp"
+                    android:orientation="horizontal"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtProfileTagsContainer">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="10dp"
+                        android:fontFamily="@font/montserrat_medium"
+                        android:text="@string/gender"
+                        android:textColor="@color/inactive_black"
+                        android:textColorHint="@color/hintColor"
+                        android:textSize="@dimen/sp_16" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbProfileMale"
+                        style="@style/Widget.App.RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/title_male"
+                        android:textSize="@dimen/sp_12" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbProfileFemale"
+                        style="@style/Widget.App.RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/title_female"
+                        android:textSize="@dimen/sp_12" />
+
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/rbProfileOther"
+                        style="@style/Widget.App.RadioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/title_other"
+                        android:textSize="@dimen/sp_12" />
+
+                </RadioGroup>
+
+                <EditText
+                    android:id="@+id/otherGenderEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:background="@drawable/shape_round_for_edt"
+                    android:hint="@string/type_your_gender"
+                    android:padding="12dp"
+                    android:paddingStart="5dp"
+                    android:textSize="14sp"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+
+                    android:layout_marginTop="15dp"
+
+                    android:layout_marginEnd="10dp"
+
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="@string/iEnjoy"
+                    android:textColor="@color/inactive_black"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="16sp" />
+
+                <RelativeLayout
+                    android:id="@+id/edtProfileTagsContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="25dp"
+
+                    android:background="@drawable/shape_round_for_edt"
+                    android:minHeight="45dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtProfileDataContainer">
+
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/ChipTags"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_toStartOf="@id/txtProfileTags"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                        tools:itemCount="5"
+                        tools:listitem="@layout/item_profile_tags" />
+
+                    <TextView
+                        android:id="@+id/txtProfileTags"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/d_5"
+                        android:layout_toStartOf="@+id/svIEnjoySelect"
+                        android:hint="@string/select"
+                        android:singleLine="true"
+                        android:textColor="@color/inactive_black" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/svIEnjoySelect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/ic_arrow_join" />
+                </RelativeLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+
+                    android:layout_marginTop="15dp"
+
+                    android:layout_marginEnd="10dp"
+
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="I am... (optional)"
+                    android:textColor="@color/inactive_black"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="16sp" />
+
+                <RelativeLayout
+                    android:id="@+id/edtProfileIamContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="25dp"
+
+                    android:background="@drawable/shape_round_for_edt"
+                    android:minHeight="45dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtProfileDataContainer">
+
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/ChipIam"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_toStartOf="@id/txtProfileIam"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:itemCount="5"
+                        tools:listitem="@layout/item_profile_tags" />
+
+                    <TextView
+                        android:id="@+id/txtProfileIam"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/d_5"
+                        android:layout_toStartOf="@+id/svIamSelect"
+                        android:hint="@string/select"
+                        android:singleLine="true"
+                        android:textColor="@color/inactive_black" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/svIamSelect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/ic_arrow_join" />
+                </RelativeLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+
+                    android:layout_marginTop="15dp"
+
+                    android:layout_marginEnd="10dp"
+
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="I prefer to... (optional)"
+                    android:textColor="@color/inactive_black"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="16sp" />
+
+                <RelativeLayout
+                    android:id="@+id/edtProfilePrefereToContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="25dp"
+
+                    android:background="@drawable/shape_round_for_edt"
+                    android:minHeight="45dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/edtProfileDataContainer">
+
+
+                    <com.google.android.material.chip.ChipGroup
+                        android:id="@+id/ChipPrefereTo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:layout_toStartOf="@id/txtProfilePrefereTo"
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        tools:itemCount="5"
+                        tools:listitem="@layout/item_profile_tags" />
+
+                    <TextView
+                        android:id="@+id/txtProfilePrefereTo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/d_5"
+                        android:layout_toStartOf="@+id/svPrefereToSelect"
+                        android:hint="@string/select"
+                        android:singleLine="true"
+                        android:textColor="@color/inactive_black" />
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/svPrefereToSelect"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="10dp"
+                        android:src="@drawable/ic_arrow_join" />
+                </RelativeLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+
+                    android:layout_marginTop="15dp"
+
+                    android:layout_marginEnd="10dp"
+
+                    android:fontFamily="@font/montserrat_medium"
+                    android:text="@string/title_moreAboutMeUpdateProfile"
+                    android:textColor="@color/inactive_black"
+                    android:textColorHint="@color/hintColor"
+                    android:textSize="16sp" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/edProfileAboutMeContainer"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginEnd="25dp"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:nextFocusForward="@+id/tv_linkedAccounts_insta"
+                    android:textColorHint="@color/hintColor"
+                    app:hintEnabled="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rbProfileRadioGroup">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edProfileAboutMe"
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"
+                        android:background="@drawable/shape_round_for_edt"
+                        android:gravity="top|start"
+                        android:hint="@string/title_moreAboutMe"
+                        android:maxLength="150"
+                        android:paddingTop="8dp"
+                        android:textAlignment="viewStart"
+                        android:textColor="@color/inactive_black" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+                <!--     <androidx.appcompat.widget.AppCompatButton
+                         android:id="@+id/btn_editProfile_save"
+                         android:layout_width="150dp"
+                         android:layout_height="40dp"
+                         android:layout_gravity="center"
+                         android:layout_marginTop="16dp"
+                         android:layout_marginBottom="8dp"
+                         android:background="@drawable/shape_confirm__primary_bg"
+                         android:drawablePadding="13dp"
+                         android:fontFamily="@font/montserrat_bold"
+                         android:paddingStart="40dp"
+                         android:paddingEnd="40dp"
+                         android:text="@string/title_save"
+
+                         android:textAlignment="center"
+                         android:textColor="@color/white"
+                         android:textSize="12dp" />-->
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_editProfile_logout"
+                    android:layout_width="150dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="30dp"
+                    android:background="@drawable/shape_green_border_no_bg"
+                    android:drawablePadding="13dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:paddingStart="40dp"
+
+                    android:paddingEnd="40dp"
+                    android:text="@string/title_logout"
+                    android:textAlignment="center"
+                    android:textColor="@color/primary_color"
+                    android:textSize="12dp"
+                    android:visibility="gone"
+                    tools:visibility="visible" />
+
+            </LinearLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </ScrollView>
+</layout>

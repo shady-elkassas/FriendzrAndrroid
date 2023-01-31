@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".home.dialog.tagsDialog.TagsDialogFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_white_corner_top_r6"
+
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/handle"
+            android:layout_width="44dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/bg_pale_grey_two_r2" />
+
+        <TextView
+            android:id="@+id/dialogTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="start"
+            android:text="Filter events by category"
+            android:layout_marginStart="25dp"
+
+
+            android:textColor="@color/primary_color"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+          >
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/ChipTags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="25dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_user_profile_usernameTitle"
+                tools:itemCount="5"
+                tools:listitem="@layout/item_profile_tags" />
+
+        </androidx.core.widget.NestedScrollView>
+
+        <TextView
+            android:id="@+id/dialogTitle2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="start"
+            android:text="Filter events by date"
+            android:layout_marginStart="25dp"
+
+
+            android:textColor="@color/primary_color"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <RadioGroup
+            android:id="@+id/rbProfileRadioGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="25dp"
+            android:orientation="horizontal"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtProfileTagsContainer">
+
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rbToday"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:button="@null"
+
+                android:textColor="@color/black"
+                android:layout_marginEnd="12dp"
+                android:gravity="center"
+                android:background="@drawable/map_date_filter_bg_selector"
+                android:text="Today"
+                android:textSize="@dimen/sp_12" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rbthisWeek"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:button="@null"
+                android:textColor="@color/black"
+
+                android:layout_weight="1"
+                android:layout_marginEnd="12dp"
+
+                android:gravity="center"
+                android:background="@drawable/map_date_filter_bg_selector"
+                android:text="This week"
+                android:textSize="@dimen/sp_12" />
+
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rbthisMonth"
+                android:layout_width="wrap_content"
+                android:button="@null"
+                android:textColor="@color/black"
+
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:background="@drawable/map_date_filter_bg_selector"
+                android:layout_weight="1"
+                android:text="This month"
+                android:textSize="@dimen/sp_12" />
+
+        </RadioGroup>
+        <RadioGroup
+            android:id="@+id/rbProfileRadioGroup2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="25dp"
+            android:orientation="horizontal"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edtProfileTagsContainer">
+
+
+            <CheckBox
+                android:id="@+id/rbCustom"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:button="@null"
+                android:layout_marginEnd="12dp"
+                android:gravity="center"
+                android:textColor="@color/black"
+
+                android:background="@drawable/map_date_filter_bg_selector"
+                android:text="Custom"
+                android:textSize="@dimen/sp_12" />
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rbDateStart"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:button="@null"
+                android:visibility="invisible"
+
+                android:layout_weight="1"
+                android:layout_marginEnd="12dp"
+                android:textColor="@color/black"
+
+                android:gravity="center"
+                android:background="@drawable/shape__green_round_20_strok_without_bg"
+                android:hint="Start date"
+                android:textColorHint="@color/black"
+                android:textSize="@dimen/sp_12" />
+
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:id="@+id/rbDateEnd"
+                android:layout_width="wrap_content"
+                android:button="@null"
+                android:visibility="invisible"
+                android:textColor="@color/black"
+
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:background="@drawable/shape__green_round_20_strok_without_bg"
+                android:layout_weight="1"
+                android:hint="End date"
+                android:textColorHint="@color/black"
+
+                android:textSize="@dimen/sp_12" />
+
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+
+
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/saveBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/shape_send_request"
+            android:paddingStart="40dp"
+            android:paddingEnd="40dp"
+            android:text="@string/title_save"
+            android:textAllCaps="false"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </LinearLayout>
+
+</layout>

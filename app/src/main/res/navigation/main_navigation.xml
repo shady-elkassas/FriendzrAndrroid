@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_feed">
+
+    <fragment
+        android:id="@+id/navigation_Inbox"
+        android:name="com.friendzrandroid.home.fragment.home.messages.inbox.InboxFragment"
+        android:label="@string/title_inbox"
+        tools:layout="@layout/inbox_fragment">
+        <action
+            android:id="@+id/action_navigation_to_Chat"
+            app:destination="@id/navigation_Chat"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_navigation_Inbox_to_myFriendsFragment"
+            app:destination="@id/myFriendsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="myapp://chatDetails" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_Chat"
+        android:name="com.friendzrandroid.home.fragment.home.messages.chat.ChatFragment"
+        android:label="@string/title_inbox"
+        tools:layout="@layout/fragment_chat">
+
+<!--                <argument-->
+<!--                    android:name="chatData"-->
+<!--                    app:argType="com.friendzrandroid.messages.data.model.InboxData"-->
+<!--                    app:nullable="true"-->
+<!--                    android:defaultValue="@null" />-->
+<!--                <argument-->
+<!--                    android:name="chatData"-->
+<!--                    app:argType="com.friendzrandroid.messages.data.model.UsersInChatDataResponse"-->
+<!--                    app:nullable="true"-->
+<!--                    android:defaultValue="@null" />-->
+
+
+        <argument
+            android:name="chatID"
+            app:argType="string"
+            app:nullable="false" />
+
+        <argument
+            android:name="chatImage"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="chatName"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="chatIsEvent"
+            app:argType="boolean"
+            app:nullable="false" />
+
+        <argument
+            android:name="myEvent"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <argument
+            android:name="isFriend"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <argument
+            android:name="chatIsGroup"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+        <argument
+            android:name="leftChat"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
+            android:name="leftGroup"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
+            android:name="isAdminGroup"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <argument
+            android:name="isWhiteLabel"
+            android:defaultValue="false"
+            app:argType="boolean" />
+
+        <action
+            android:id="@+id/action_navigation_Chat_to_detailsGroupChatFragment"
+            app:destination="@id/detailsGroupChatFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+
+
+        <action
+            android:id="@+id/action_navigation_Chat_to_eventDetailsFragment"
+            app:destination="@id/eventDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigation_Chat_to_reportFragment"
+            app:destination="@id/reportFragment"
+
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            />
+
+        <action
+            android:id="@+id/action_navigation_Chat_to_userProfileFragment"
+            app:destination="@id/userProfileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/myFriendsFragment"
+        android:name="com.friendzrandroid.home.fragment.home.messages.allFriends.AllFriendsFragment"
+        android:label="friends_fragment"
+        tools:layout="@layout/all_users_fragment">
+        <action
+            android:id="@+id/action_friendsFragment_to_chatFragment"
+            app:destination="@id/navigation_Chat"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_myFriendsFragment_to_createGroupFragment"
+            app:destination="@id/createGroupFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_map"
+        android:name="com.friendzrandroid.home.fragment.home.map.MapsFragment"
+        android:label="@string/title_map"
+        tools:layout="@layout/fragment_maps">
+
+        <action
+            android:id="@+id/action_navigation_to_addEvent"
+            app:destination="@id/addEventFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_navigation_to_EventDetails"
+            app:destination="@id/eventDetailsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigation_to_Gender_distribution"
+            app:destination="@id/navigation_Gender_distribution"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_Gender_distribution"
+        android:name="com.friendzrandroid.home.fragment.home.genderDistribution.GenderDistributionFragment"
+        android:label="@string/genderDistribution"
+        tools:layout="@layout/fragment_gender_distribution">
+        <argument
+            android:name="genderDist"
+            app:argType="com.friendzrandroid.home.data.model.LocationGenderDistribution" />
+        <action
+            android:id="@+id/action_navigation_to_addEvent"
+            app:destination="@id/addEventFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_feed"
+        android:name="com.friendzrandroid.home.fragment.home.feed.FeedFragment"
+        android:label="@string/title_feed"
+        tools:layout="@layout/feed_fragment">
+        <action
+            android:id="@+id/action_navigation_to_Chat"
+            app:destination="@id/navigation_Chat"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_navigation_feed_to_userProfileFragment"
+            app:destination="@id/userProfileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigation_feed_to_navigation_map"
+            app:destination="@id/navigation_map"
+
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+
+            />
+        <action
+            android:id="@+id/action_navigation_feed_to_navigation_Chat"
+            app:destination="@id/navigation_Chat"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigation_feed_to_navigation_Inbox"
+            app:destination="@id/navigation_Inbox"
+            app:popUpToInclusive="true"
+
+
+            />
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_requests"
+        android:name="com.friendzrandroid.home.fragment.home.requestes.RequestsFragment"
+        android:label="@string/title_requests"
+        tools:layout="@layout/requests_fragment">
+        <action
+            android:id="@+id/action_navigation_feed_to_userProfileFragment"
+            app:destination="@id/userProfileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigation_requests_to_navigation_Chat"
+            app:destination="@id/navigation_Chat" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_more"
+        android:name="com.friendzrandroid.home.fragment.home.more.MoreFragment"
+        android:label="@string/title_more"
+        tools:layout="@layout/more_fragment">
+        <action
+            android:id="@+id/action_navigation_more_to_profileFragment"
+            app:destination="@id/profileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigation_more_to_eventFragment"
+            app:destination="@id/eventsFragment"
+
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigation_more_to_notificationFragment"
+            app:destination="@id/notificationFragment"
+
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_navigation_more_to_settingsFragment"
+            app:destination="@id/settingsFragment"
+
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.friendzrandroid.home.fragment.more.myProfile.MyProfileFragment"
+        android:label="profile_fragment"
+        tools:layout="@layout/user_profile_fragment">
+
+        <action
+            android:id="@+id/action_profileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/addEventFragment"
+        android:name="com.friendzrandroid.home.fragment.home.events.addEvent.AddEventFragment"
+        android:label="add_event_fragment"
+        tools:layout="@layout/edit_event_fragment">
+        <argument
+            android:name="locationLat"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="locationLang"
+            android:defaultValue=""
+            app:argType="string" />
+        <action
+            android:id="@+id/action_addEventFragment_to_addUserGroupFragment"
+            app:destination="@id/addUserGroupFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/notificationFragment"
+        android:name="com.friendzrandroid.home.fragment.more.notification.NotificationFragment"
+        android:label="notification_fragment"
+        tools:layout="@layout/notification_fragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.friendzrandroid.home.fragment.more.settings.SettingsFragment"
+        android:label="settings_fragment"
+        tools:layout="@layout/settings_fragment">
+
+        <argument
+            android:name="personalSpace"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="ageFilter"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <argument
+            android:name="privateMode"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="distanceFilter"
+            android:defaultValue=""
+            app:argType="string" />
+
+
+
+        <action
+            android:id="@+id/action_settingsFragment_to_changePasswordFragment"
+            app:destination="@id/changePasswordFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settingsFragment_to_blockListFragment"
+            app:destination="@id/blockListFragment"
+
+            />
+    </fragment>
+
+    <fragment
+        android:id="@+id/changePasswordFragment"
+        android:name="com.friendzrandroid.home.fragment.more.changePassword.ChangePasswordFragment"
+        android:label="change_password_fragment"
+        tools:layout="@layout/fragment_change_password" />
+    <fragment
+        android:id="@+id/eventsFragment"
+        android:name="com.friendzrandroid.home.fragment.home.events.eventList.EventsFragment"
+        android:label="events_fragment"
+        tools:layout="@layout/events_fragment">
+        <action
+            android:id="@+id/action_eventsFragment_to_eventDetailsFragment"
+            app:destination="@id/eventDetailsFragment"
+
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_eventsFragment_to_editEventFragment"
+            app:destination="@id/editEventFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/eventDetailsFragment"
+        android:name="com.friendzrandroid.home.fragment.home.events.eventDetails.EventDetailsFragment"
+        android:label="event_details_fragment"
+        tools:layout="@layout/event_details_fragment">
+        <argument
+            android:name="eventID"
+            android:defaultValue=""
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_show_all_attendance"
+            app:destination="@id/eventAttendenceFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <!--        <action-->
+        <!--            android:id="@+id/action_eventDetailsFragment_to_addEventFragment"-->
+        <!--            app:destination="@id/addEventFragment"-->
+        <!--            app:enterAnim="@anim/slide_in_right"-->
+        <!--            app:exitAnim="@anim/slide_out_left"-->
+        <!--            app:popEnterAnim="@anim/slide_in_left"-->
+        <!--            app:popExitAnim="@anim/slide_out_right" />-->
+        <action
+            android:id="@+id/action_eventDetailsFragment_to_editEventFragment"
+            app:destination="@id/editEventFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right">
+            <argument
+                android:name="eventID"
+                android:defaultValue=""
+                app:argType="string" />
+        </action>
+        <action
+            android:id="@+id/action_eventDetailsFragment_to_reportFragment"
+            app:destination="@id/reportFragment" />
+        <action
+            android:id="@+id/action_eventDetailsFragment_to_eventShareFragment"
+            app:destination="@id/eventShareFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_eventDetailsFragment_to_navigation_Chat"
+            app:destination="@id/navigation_Chat"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/eventAttendenceFragment"
+        android:name="com.friendzrandroid.home.fragment.home.events.eventAttendances.EventAttendancesFragment"
+        android:label="edit_event_fragment"
+        tools:layout="@layout/fragment_event_attendance">
+        <argument
+            android:name="eventID"
+            android:defaultValue=""
+            app:argType="string" />
+        <argument
+            android:name="isEventAdmin"
+            android:defaultValue="false"
+            app:argType="boolean" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/editEventFragment"
+        android:name="com.friendzrandroid.home.fragment.home.events.editEvents.EditEventFragment"
+        android:label="edit_event_fragment"
+        tools:layout="@layout/edit_event_fragment">
+        <argument
+            android:name="eventID"
+            android:defaultValue=""
+            app:argType="string" />
+        <action
+            android:id="@+id/action_editEventFragment_to_addUserGroupFragment"
+            app:destination="@id/addUserGroupFragment" />
+        <action
+            android:id="@+id/action_editEventFragment_to_eventAttendenceFragment"
+            app:destination="@id/eventAttendenceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.friendzrandroid.home.fragment.more.editProfile.EditProfileFragment"
+        android:label="edit_profile_fragment"
+        tools:layout="@layout/edit_profile_fragment">
+        <!--        <argument-->
+        <!--            android:name="profileData"-->
+        <!--            app:argType="com.friendzrandroid.messages.data.model.UserProfileData"-->
+        <!--            app:nullable="true"-->
+        <!--            android:defaultValue="@null"/>-->
+    </fragment>
+    <fragment
+        android:id="@+id/userProfileFragment"
+        android:name="com.friendzrandroid.home.fragment.home.UserProfile.FeedRequestUserProfileFragment"
+        android:label="user_profile_fragment"
+        tools:layout="@layout/user_profile_fragment">
+        <argument
+            android:name="userID"
+            android:defaultValue=""
+            app:argType="string" />
+        <action
+            android:id="@+id/action_userProfileFragment_to_reportFragment"
+            app:destination="@id/reportFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_userProfileFragment_to_navigation_Chat"
+            app:destination="@id/navigation_Chat"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+
+            />
+    </fragment>
+    <fragment
+        android:id="@+id/reportFragment"
+        android:name="com.friendzrandroid.home.fragment.home.report.ReportFragment"
+        android:label="ReportFragment"
+        tools:layout="@layout/fragment_user_report">
+        <argument
+            android:name="userId"
+            app:argType="string" />
+        <argument
+            android:name="reportType"
+            app:argType="integer" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/eventShareFragment"
+        android:name="com.friendzrandroid.home.fragment.home.events.eventShare.EventShareFragment"
+        android:label="EventShareFragment"
+        tools:layout="@layout/fragment_share">
+        <argument
+            android:name="eventId"
+            app:argType="string" />
+        <argument
+            android:name="message"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/createGroupFragment"
+        android:name="com.friendzrandroid.home.fragment.home.messages.group.create.CreateGroupFragment"
+        android:label="CreateGroupFragment"
+        tools:layout="@layout/create_inbox_group_fragment" />
+    <fragment
+        android:id="@+id/detailsGroupChatFragment"
+        android:name="com.friendzrandroid.home.fragment.home.messages.group.details.DetailsGroupChatFragment"
+        android:label="DetailsGroupChatFragment"
+        tools:layout="@layout/create_inbox_group_fragment">
+        <argument
+            android:name="chatId"
+            app:argType="string" />
+        <argument
+            android:name="isGroupAdmin"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_detailsGroupChatFragment_to_navigation_Inbox"
+            app:destination="@id/navigation_Inbox"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_detailsGroupChatFragment_to_addUserGroupFragment"
+            app:destination="@id/addUserGroupFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/addUserGroupFragment"
+        android:name="com.friendzrandroid.home.fragment.home.messages.group.addUser.AddUserGroupFragment"
+        android:label="AddUserGroupFragment"
+        tools:layout="@layout/all_users_fragment">
+        <argument
+            android:name="chatId"
+            app:argType="string"
+            app:nullable="true" />
+        <argument
+            android:name="listOfSelectedUsers"
+            android:defaultValue="@null"
+            app:argType="string[]"
+            app:nullable="true" />
+
+        <argument
+            android:name="isEditEvent"
+            android:defaultValue="false"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/blockListFragment"
+        android:name="com.friendzrandroid.home.fragment.more.blockList.BlockListFragment"
+        android:label="BlockListFragment"
+        tools:layout="@layout/all_users_fragment" />
+    <fragment
+        android:id="@+id/communityGL"
+        android:name="com.friendzrandroid.home.fragment.home.community.CommunityGL"
+        android:label="CommunityGL">
+        <action
+            android:id="@+id/action_communityGL_to_navigation_requests"
+            app:destination="@id/navigation_requests" />
+        <action
+            android:id="@+id/action_communityGL_to_userProfileFragment"
+            app:destination="@id/userProfileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_communityGL_to_eventDetailsFragment"
+            app:destination="@id/eventDetailsFragment"
+
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+
+            />
+    </fragment>
+</navigation>

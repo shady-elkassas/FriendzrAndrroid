@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="bottom"
+    android:background="@drawable/shape_round_top_more"
+    android:orientation="vertical"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp">
+
+
+    <TextView
+        android:id="@+id/tv_dialog_ghost_mode_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:gravity="center"
+        android:text="@string/select_manual_distance"
+        android:textColor="@color/title_black"
+        />
+
+    <androidx.appcompat.widget.AppCompatSeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:progressDrawable="@drawable/progress_background"
+        android:thumb="@drawable/thumb_selector"
+
+        />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/actionBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="100sp"
+        android:layout_marginBottom="35dp"
+        android:background="@drawable/shape_gradient_for_login"
+        android:drawablePadding="13dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:paddingStart="40dp"
+        android:paddingEnd="40dp"
+        android:text="@string/title_save"
+
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+       />
+
+
+</LinearLayout>

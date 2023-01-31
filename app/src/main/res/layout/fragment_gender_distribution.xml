@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".home.fragment.home.genderDistribution.GenderDistributionFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gray_bg">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white">
+                   <LinearLayout
+                       android:id="@+id/btnBack"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content">
+                       <ImageView
+                           android:layout_width="wrap_content"
+                           android:layout_height="wrap_content"
+                           android:layout_marginStart="25dp"
+                           android:layout_marginEnd="25dp"
+                           android:backgroundTint="@color/black"
+                           android:layout_marginTop="27dp"
+                           android:layout_marginBottom="27dp"
+                           android:background="@drawable/ic_back_primary_color" />
+                   </LinearLayout>
+
+                </LinearLayout>
+                
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:background="@drawable/ic_gender_dist"
+                    android:layout_height="150dp"/>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_interests_container"
+                    android:layout_width="match_parent"
+                    android:layout_height="230dp"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="35dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/tv_events_interests"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/montserrat_semibold"
+                            android:gravity="center"
+                            android:text="@string/gender"
+                            android:textColor="@color/title_black"
+                            android:textSize="14sp" />
+
+
+                        <app.futured.donut.DonutProgressView
+                            android:id="@+id/eventInterestsChart"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="41dp"
+                            android:layout_marginBottom="50dp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cv_interests_items_value"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginEnd="35dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cv_interests_container">
+
+                    <LinearLayout
+                        android:id="@+id/genderStatistic"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical"
+                        android:paddingStart="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="20dp"
+                        android:paddingBottom="10dp">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+
+                            android:layout_height="50dp"
+                            android:layout_gravity="center">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/btn_firstItem_color"
+                                android:layout_width="13dp"
+                                android:layout_height="13dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                app:cardBackgroundColor="@color/color_male"
+                                app:cardCornerRadius="2dp" />
+
+                            <TextView
+                                android:id="@+id/tv_first_item_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:text="@string/title_male"
+                                android:layout_marginStart="15dp"
+                                android:layout_toEndOf="@+id/btn_firstItem_color"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:textColor="@color/title_black"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/malePercentValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="15dp"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:textColor="@color/title_black"
+                                android:textSize="14sp" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/view_bg" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+
+                            android:layout_height="50dp"
+                            android:layout_gravity="center">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/btn_socendItem_color"
+                                android:layout_width="13dp"
+                                android:layout_height="13dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                app:cardBackgroundColor="@color/color_female"
+                                app:cardCornerRadius="2dp" />
+
+                            <TextView
+                                android:id="@+id/tv_socend_item_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="15dp"
+                                android:text="@string/title_female"
+                                android:layout_toEndOf="@+id/btn_socendItem_color"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:textColor="@color/title_black"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/femalePercentValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="15dp"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:textColor="@color/title_black"
+                                android:textSize="14sp" />
+
+                        </RelativeLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:background="@color/view_bg" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+
+                            android:layout_height="50dp"
+                            android:layout_gravity="center">
+
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/btn_thirdItem_color"
+                                android:layout_width="13dp"
+                                android:layout_height="13dp"
+                                android:layout_alignParentStart="true"
+                                android:layout_centerVertical="true"
+                                app:cardBackgroundColor="@color/color_other"
+                                app:cardCornerRadius="2dp" />
+
+                            <TextView
+                                android:id="@+id/tv_third_item_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="15dp"
+                                android:text="@string/title_other"
+                                android:layout_toEndOf="@+id/btn_thirdItem_color"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:textColor="@color/title_black"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/otherPercentValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginStart="15dp"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:textColor="@color/title_black"
+                                android:textSize="14sp" />
+
+                        </RelativeLayout>
+
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+
+        <LinearLayout
+            android:id="@+id/addNewEvent"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="25dp"
+            android:background="@drawable/ic_dark_circle"
+            android:layout_marginBottom="16dp">
+            <ImageView
+                android:layout_width="match_parent"
+                android:background="@drawable/ic_add"
+                android:layout_margin="10dp"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </RelativeLayout>
+
+</layout>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginStart="40dp"
+    android:layout_marginEnd="40dp"
+    android:background="@drawable/shape_confirm_bg"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/tv_headerTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="35dp"
+        android:layout_marginEnd="24dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/title_Confirm"
+        android:textColor="@color/title_black"
+        android:textSize="15sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_headerSubTitle"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="@string/title_dialog_confirm_subtitle"
+        android:textAlignment="viewStart"
+        android:textColor="@color/title_black"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:id="@+id/actionsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="25dp"
+
+        android:layout_marginBottom="30dp"
+        android:layout_weight="1"
+        android:gravity="center|end">
+
+        <Button
+            android:id="@+id/btn_close"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+
+            android:layout_marginEnd="13dp"
+            android:background="@drawable/shape_round_red"
+            android:fontFamily="@font/montserrat_bold"
+            android:paddingStart="7dp"
+            android:paddingEnd="7dp"
+            android:visibility="gone"
+            android:text="OFF"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/btn_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+
+            android:layout_marginEnd="13dp"
+            android:background="@drawable/shape_round_green"
+            android:fontFamily="@font/montserrat_bold"
+            android:paddingStart="7dp"
+            android:paddingEnd="7dp"
+            android:visibility="gone"
+            android:text="EDIT"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+
+            android:textSize="15sp" />
+
+
+
+
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btnDeclineRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:background="@null"
+
+            android:src="@drawable/ic_no_dilaog"
+            app:layout_constraintBottom_toBottomOf="@+id/cimg_requests_userImage"
+            app:layout_constraintEnd_toStartOf="@+id/img_item_requests_confirm"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/tv_requests_userName"
+            app:layout_constraintTop_toTopOf="@+id/cimg_requests_userImage" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/btnAcceptRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="25dp"
+            android:background="@null"
+            android:src="@drawable/ic_yes_dilaog"
+
+            app:layout_constraintBottom_toBottomOf="@+id/cimg_requests_userImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/cimg_requests_userImage" />
+    </LinearLayout>
+
+
+</LinearLayout>

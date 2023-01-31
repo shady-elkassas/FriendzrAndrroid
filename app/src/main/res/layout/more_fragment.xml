@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gray_bg"
+            tools:context=".home.fragment.home.more.MoreFragment">
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_height="?actionBarSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/img_more_userImage"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_below="@+id/view2"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/ic_primary_border_circle"
+              />
+
+            <TextView
+                android:id="@+id/tv_more_userName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/img_more_userImage"
+                android:fontFamily="@font/montserrat_bold"
+                android:lines="1"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="viewStart"
+                android:textColor="@color/title_black"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="@+id/img_more_userImage"
+                app:layout_constraintStart_toStartOf="@+id/img_more_userImage"
+                app:layout_constraintTop_toBottomOf="@+id/img_more_userImage" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fillViewport="true"
+                android:layout_below="@+id/tv_more_userName"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:fadeScrollbars="true"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_more_userName"
+                app:layout_constraintVertical_bias="0.0"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/shape_round_top_more"
+                    android:orientation="vertical"
+                    android:paddingStart="20dp"
+                    android:paddingTop="26dp"
+                    android:weightSum="2"
+
+                    android:paddingEnd="20dp"
+                    android:paddingBottom="2dp"
+
+                    >
+
+                    <TextView
+                        android:id="@+id/tv_more_profile"
+                        style="@style/moreTextViewStyle"
+                        android:drawableStart="@drawable/ic_more_user"
+                        android:text="@string/title_profile"
+
+
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="40dp"
+                        android:background="@color/view_bg" />
+
+                    <TextView
+                        android:id="@+id/tv_more_events"
+
+                        style="@style/moreTextViewStyle"
+                        android:drawableStart="@drawable/ic_more_events"
+                        android:text="@string/title_events"
+
+
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="40dp"
+                        android:background="@color/view_bg" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/tv_more_notification"
+                            style="@style/moreTextViewStyle"
+                            android:layout_alignParentStart="true"
+                            android:drawableStart="@drawable/ic_more_notification"
+                            android:text="@string/title_notifications" />
+
+
+                        <RelativeLayout
+                            android:id="@+id/notification_badge_container"
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="16dp"
+                            android:background="@drawable/shape_circle_primary_color"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:visibility="visible">
+
+                            <TextView
+                                android:id="@+id/notification_badge"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerVertical="true"
+                                android:fontFamily="@font/montserrat_medium"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:text="10" />
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="40dp"
+                        android:background="@color/view_bg" />
+
+                    <TextView
+                        android:id="@+id/tv_more_share"
+
+                        style="@style/moreTextViewStyle"
+                        android:drawableStart="@drawable/ic_more_share"
+                        android:text="@string/title_share"
+
+
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="40dp"
+                        android:background="@color/view_bg" />
+
+                    <TextView
+                        android:id="@+id/tv_more_settings"
+
+                        style="@style/moreTextViewStyle"
+                        android:drawableStart="@drawable/ic_more_settings"
+                        android:text="@string/title_settings"
+
+
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="40dp"
+                        android:background="@color/view_bg" />
+
+
+                    <TextView
+                        android:id="@+id/tv_more_help"
+
+                        style="@style/moreTextViewStyle"
+                        android:drawableStart="@drawable/ic_help"
+                        android:text="@string/title_help"
+
+
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="40dp"
+                        android:background="@color/view_bg" />
+
+
+                    <TextView
+                        android:id="@+id/tv_more_tips"
+                        style="@style/moreTextViewStyle"
+                        android:drawableStart="@drawable/ic_tips"
+                        android:text="@string/title_tips_and_guidance" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="40dp"
+                        android:background="@color/view_bg" />
+
+
+                    <TextView
+                        android:id="@+id/tv_more_aboutUs"
+
+                        style="@style/moreTextViewStyle"
+                        android:drawableStart="@drawable/ic_more_aboutus"
+                        android:text="@string/title_aboutUs"
+
+
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="40dp"
+                        android:background="@color/view_bg" />
+
+
+                    <TextView
+                        android:id="@+id/tv_more_terms"
+
+                        style="@style/moreTextViewStyle"
+                        android:drawableStart="@drawable/ic_more_terms"
+                        android:text="@string/title_termsAndCondotions"
+
+
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="40dp"
+                        android:background="@color/view_bg" />
+
+                    <TextView
+                        android:id="@+id/tv_privacy_policy"
+                        style="@style/moreTextViewStyle"
+                        android:drawableStart="@drawable/ic_privacy"
+                        android:text="@string/title_privacy_policy"
+
+
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="40dp"
+                        android:background="@color/view_bg" />
+
+
+                    <TextView
+                        android:id="@+id/tv_more_contactUs"
+
+                        style="@style/moreTextViewStyle"
+                        android:drawableStart="@drawable/ic_more_contactus"
+                        android:text="@string/title_contactus"
+
+
+                        />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginStart="40dp"
+                        android:background="@color/view_bg" />
+
+                    <TextView
+                        android:id="@+id/tv_more_logout"
+
+                        style="@style/moreTextViewStyle"
+                        android:layout_marginBottom="80dp"
+                        android:drawableStart="@drawable/ic_more_logout"
+                        android:text="@string/title_logout"
+
+                        />
+
+
+                </LinearLayout>
+
+            </ScrollView>
+
+
+            <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/bannerAdView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                ads:adSize="BANNER"
+                ads:adUnitId="ca-app-pub-6206027456764756/4483859663"
+                ads:layout_constraintBottom_toBottomOf="parent"
+                ads:layout_constraintEnd_toEndOf="parent"
+                ads:layout_constraintStart_toStartOf="parent" />
+
+
+        </RelativeLayout>
+
+</layout>

@@ -1,0 +1,1070 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".home.fragment.home.events.eventDetails.EventDetailsFragment">
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/ShimmerEventView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:background="@color/grey">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipeToRefreshEventDetails"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/gray_bg"
+                android:fillViewport="true"
+                android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <RelativeLayout
+                            android:id="@+id/rl_inbox_appbarContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="?actionBarSize"
+                            android:background="@color/white"
+                            android:orientation="horizontal"
+
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+
+                            <ImageView
+                                android:id="@+id/btnBack"
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="?android:actionBarSize"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentTop="true"
+                                android:layout_marginStart="25dp"
+                                android:src="@drawable/ic_back_black" />
+
+                            <TextView
+                                android:id="@+id/tv_inbox_title"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/montserrat_semibold"
+                                android:gravity="center"
+                                android:textColor="@color/inactive_black"
+                                tools:text="@string/title_eventDetials" />
+
+
+                            <ImageView
+                                android:id="@+id/img_profileMenu"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentEnd="true"
+                                android:layout_centerInParent="true"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="16dp"
+                                android:paddingStart="16dp"
+                                android:paddingEnd="16dp"
+                                android:src="@drawable/ic_menu_dots" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_alignParentBottom="true"
+                                android:background="@color/inactive_gray" />
+                        </RelativeLayout>
+
+
+                        <ImageView
+                            android:id="@+id/eventImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@id/rl_inbox_appbarContainer"
+                            android:scaleType="centerCrop"
+                            android:src="@color/white" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_below="@id/rl_inbox_appbarContainer"
+                            android:layout_alignParentBottom="true"
+                            android:background="@drawable/bg_image_shadow_black"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/rl_inbox_appbarContainer"
+                            android:layout_alignParentBottom="true"
+                            android:background="#12000000"
+                            android:paddingTop="5dp"
+                            android:paddingBottom="5dp">
+
+
+                            <LinearLayout
+                                android:id="@+id/external_event_data_container"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentBottom="true"
+                                android:orientation="vertical"
+                                android:visibility="gone">
+
+                                <TextView
+                                    android:id="@+id/eventTitleValueExternal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:fontFamily="@font/montserrat_bold"
+                                    android:textAlignment="center"
+                                    android:textColor="@color/white"
+                                    android:textSize="14sp"
+                                    android:visibility="visible"
+                                    tools:text="titklasjdkaljsdkkaladlkjakljdsakjlasddaljkdalaksladl;aksdklafsfjdakjlsdlkajsldkja;jsghakhgfkljaljksfhgalkghflgle" />
+
+
+                                <TextView
+                                    android:id="@+id/eventCategoryValueExternal"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="16dp"
+                                    android:layout_marginEnd="16dp"
+                                    android:layout_marginBottom="8dp"
+                                    android:fontFamily="@font/montserrat_bold"
+                                    android:textAlignment="textStart"
+                                    android:textColor="@color/white"
+                                    android:textSize="12sp"
+                                    android:visibility="gone"
+                                    tools:text="Category External" />
+
+                            </LinearLayout>
+
+
+                            <TextView
+                                android:id="@+id/eventTitleValue"
+                                style="@style/profileTitleStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_above="@+id/tv_eventCategory"
+                                android:layout_marginStart="20dp"
+                                android:lines="1"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/white"
+                                android:textSize="18sp"
+                                android:visibility="visible"
+                                tools:text="title"
+
+                                />
+
+
+                            <TextView
+                                android:id="@+id/tv_eventCategory"
+                                style="@style/profileTitleStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginBottom="5dp"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                tools:text="@string/category"
+
+
+                                />
+
+                            <!--                        <TextView-->
+                            <!--                            android:id="@+id/eventDateValue"-->
+                            <!--                            style="@style/profileTitleStyle"-->
+                            <!--                            android:layout_width="0dp"-->
+                            <!--                            android:layout_height="wrap_content"-->
+                            <!--                            android:layout_marginStart="25dp"-->
+                            <!--                            android:lines="1"-->
+                            <!--                            android:text="asdasdasdasdasd\nasdasd"-->
+
+                            <!--                            android:textAlignment="textStart"-->
+                            <!--                            android:textColor="@color/white"-->
+                            <!--                            android:textSize="12sp"-->
+                            <!--                            android:visibility="gone"-->
+
+                            <!--                            app:layout_constraintStart_toStartOf="parent"-->
+                            <!--                            app:layout_constraintTop_toTopOf="parent" />-->
+
+                            <!--                        <TextView-->
+                            <!--                            android:id="@+id/tv_event_dateTitle"-->
+                            <!--                            style="@style/profileTitleStyle"-->
+                            <!--                            android:layout_width="0dp"-->
+                            <!--                            android:layout_height="wrap_content"-->
+                            <!--                            android:layout_marginStart="25dp"-->
+                            <!--                            android:text="@string/date"-->
+                            <!--                            android:textColor="@color/white"-->
+                            <!--                            android:visibility="gone"-->
+
+                            <!--                            app:layout_constraintStart_toStartOf="parent"-->
+                            <!--                            app:layout_constraintTop_toBottomOf="@+id/eventDateValue" />-->
+
+
+                            <!--                        <TextView-->
+                            <!--                            android:id="@+id/eventTimeValue"-->
+                            <!--                            style="@style/profileTitleStyle"-->
+                            <!--                            android:layout_width="0dp"-->
+                            <!--                            android:layout_height="wrap_content"-->
+                            <!--                            android:layout_marginStart="25dp"-->
+                            <!--                            android:gravity="start"-->
+                            <!--                            android:lines="2"-->
+                            <!--                            android:text="adassad"-->
+                            <!--                            android:textAlignment="textStart"-->
+                            <!--                            android:textColor="@color/white"-->
+                            <!--                            android:textSize="12sp"-->
+                            <!--                            android:visibility="gone"-->
+                            <!--                            app:layout_constraintStart_toEndOf="@+id/eventDateValue"-->
+                            <!--                            app:layout_constraintTop_toTopOf="parent" />-->
+
+                            <!--                        <TextView-->
+                            <!--                            android:id="@+id/tv_event_time"-->
+                            <!--                            style="@style/profileTitleStyle"-->
+                            <!--                            android:layout_width="0dp"-->
+                            <!--                            android:layout_height="wrap_content"-->
+                            <!--                            android:text="@string/title_time"-->
+
+                            <!--                            android:visibility="gone"-->
+                            <!--                            app:layout_constraintStart_toStartOf="@+id/eventTimeValue"-->
+                            <!--                            app:layout_constraintTop_toBottomOf="@+id/eventTimeValue" />-->
+
+
+                            <TextView
+                                android:id="@+id/eventAttendenceNumbers"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignBaseline="@id/tv_eventCategory"
+                                android:layout_alignParentEnd="true"
+                                android:layout_alignParentBottom="true"
+                                android:layout_marginEnd="16dp"
+                                android:fontFamily="@font/montserrat_semibold"
+                                android:textColor="@color/white"
+                                android:textSize="12sp"
+                                tools:text="Attendees: 10 / 1000" />
+                        </RelativeLayout>
+
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/event_buttons_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/actionBtn"
+                            android:layout_width="wrap_content"
+                            android:layout_height="40dp"
+                            android:layout_centerHorizontal="true"
+                            android:background="@drawable/shape_send_request"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:paddingStart="50dp"
+                            android:paddingEnd="50dp"
+                            android:text="@string/title_edit"
+                            android:textAlignment="center"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                        <androidx.appcompat.widget.AppCompatImageButton
+                            android:id="@+id/event_details_chat_button"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginStart="50dp"
+                            android:layout_marginEnd="16dp"
+                            android:background="@drawable/shape_round_green"
+                            android:src="@drawable/ic_chat_bubble"
+                            android:tint="@color/white" />
+
+
+                        <TextView
+                            android:id="@+id/event_external_hint"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/actionBtn"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="8dp"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:gravity="center"
+                            android:text="@string/title_external_event_hint"
+                            android:textColor="@color/delete"
+                            android:textSize="14sp"
+                            android:visibility="gone"
+                            tools:visibility="visible" />
+
+                    </RelativeLayout>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="16dp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="15dp"
+                        app:cardElevation="10dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="16dp">
+
+                            <TextView
+                                android:id="@+id/eventDateTitle"
+                                style="@style/profileTitleStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:lines="1"
+                                android:text="@string/date_title"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                            <TextView
+                                android:id="@+id/eventDateValue"
+                                style="@style/eventTextStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:lines="1"
+                                android:text="@string/date_title"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                app:layout_constraintBottom_toBottomOf="@id/eventDateTitle"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/eventDateTitle"
+                                app:layout_constraintTop_toTopOf="@id/eventDateTitle" />
+
+
+                            <TextView
+                                android:id="@+id/eventTimeTitle"
+                                style="@style/profileTitleStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:lines="1"
+                                android:text="@string/time_title"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                app:layout_constraintStart_toStartOf="@id/eventDateTitle"
+                                app:layout_constraintTop_toBottomOf="@id/eventDateTitle" />
+
+                            <TextView
+                                android:id="@+id/eventTimeValue"
+                                style="@style/eventTextStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:lines="1"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                app:layout_constraintBaseline_toBaselineOf="@id/eventTimeTitle"
+                                app:layout_constraintBottom_toBottomOf="@id/eventTimeTitle"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@id/eventTimeTitle"
+                                app:layout_constraintTop_toTopOf="@id/eventTimeTitle"
+                                tools:text="@string/time_title" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="16dp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="15dp"
+                        app:cardElevation="10dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="16dp">
+
+                            <TextView
+                                android:id="@+id/eventDescriptionTitle"
+                                style="@style/profileTitleStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:lines="1"
+                                android:text="@string/title_description"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+
+                            <TextView
+                                android:id="@+id/eventDescriptionValue"
+                                style="@style/eventTextStyle"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                android:gravity="center"
+                                android:lines="3"
+                                android:maxLines="3"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="14sp"
+                                app:layout_constraintBottom_toTopOf="@id/eventDescriptionSeeMore"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@id/eventDescriptionTitle"
+                                tools:text="asjdkfasjlkdfjklaskkljfajdlkfaljkasdfjlksadfjlasdfljkjdfkajsdfkjkljfalkdsjfalkjasfdljklfadsljdaflkjsdflkajsdfljka" />
+
+
+                            <TextView
+                                android:id="@+id/eventDescriptionSeeMore"
+                                style="@style/profileTitleStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:lines="1"
+                                android:text="See more"
+                                android:textAlignment="textStart"
+                                android:textColor="@color/primary_color"
+                                android:textSize="14sp"
+                                android:visibility="gone"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/bannerAdView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="15dp"
+                        ads:adSize="BANNER"
+                        ads:adUnitId="ca-app-pub-6206027456764756/4483859663"
+                        ads:layout_constraintBottom_toBottomOf="parent"
+                        ads:layout_constraintEnd_toEndOf="parent"
+                        ads:layout_constraintStart_toStartOf="parent" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_interests_items_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="16dp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="15dp"
+                        app:cardElevation="10dp">
+
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/friendzr_attendee_title"
+                                style="@style/profileTitleStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginBottom="8dp"
+                                android:text="@string/title_friendzr_attendees"
+                                android:textAlignment="center"
+                                android:textColor="@color/black"
+                                android:textSize="12sp"
+                                android:visibility="gone" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <LinearLayout
+                                    android:id="@+id/genderStatistic"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:padding="16dp">
+
+                                    <TextView
+                                        android:id="@+id/gender_statistics_title"
+                                        style="@style/profileTitleStyle"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/gender_statistics_title"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center">
+
+                                        <ProgressBar
+                                            android:id="@+id/male_progress_bar"
+                                            style="?android:attr/progressBarStyleHorizontal"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="8dp"
+                                            android:layout_below="@id/tv_male_item_title"
+                                            android:layout_marginTop="16dp"
+                                            android:progressDrawable="@drawable/progress_bar_rounded_corner"
+                                            android:progressTint="@color/blue"
+                                            tools:progress="50" />
+
+                                        <TextView
+                                            android:id="@+id/tv_male_item_title"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/montserrat_medium"
+                                            android:text="@string/title_male"
+                                            android:textColor="@color/title_black"
+                                            android:textSize="12sp" />
+
+                                        <TextView
+                                            android:id="@+id/tv_male_item_value"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentEnd="true"
+                                            android:layout_centerVertical="true"
+                                            android:layout_marginStart="15dp"
+                                            android:fontFamily="@font/montserrat_medium"
+                                            android:textColor="@color/title_black"
+                                            android:textSize="12sp"
+                                            tools:text="50%" />
+
+
+                                    </RelativeLayout>
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="8dp">
+
+                                        <ProgressBar
+                                            android:id="@+id/female_progress_bar"
+                                            style="?android:attr/progressBarStyleHorizontal"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="8dp"
+                                            android:layout_below="@id/tv_female_item_title"
+                                            android:layout_marginTop="16dp"
+                                            android:progressDrawable="@drawable/progress_bar_rounded_corner"
+                                            tools:progress="20" />
+
+                                        <TextView
+                                            android:id="@+id/tv_female_item_title"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/montserrat_medium"
+                                            android:text="@string/title_female"
+                                            android:textColor="@color/title_black"
+                                            android:textSize="12sp" />
+
+                                        <TextView
+                                            android:id="@+id/tv_female_item_value"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentEnd="true"
+                                            android:layout_centerVertical="true"
+                                            android:layout_marginStart="15dp"
+                                            android:fontFamily="@font/montserrat_medium"
+                                            android:textColor="@color/title_black"
+                                            android:textSize="12sp"
+                                            tools:text="20%" />
+
+
+                                    </RelativeLayout>
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="8dp">
+
+                                        <ProgressBar
+                                            android:id="@+id/otherGender_progress_bar"
+                                            style="?android:attr/progressBarStyleHorizontal"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="8dp"
+                                            android:layout_below="@id/tv_otherGender_item_title"
+                                            android:layout_marginTop="16dp"
+                                            android:progressDrawable="@drawable/progress_bar_rounded_corner"
+                                            android:progressTint="@color/primary_color"
+                                            tools:progress="10" />
+
+                                        <TextView
+                                            android:id="@+id/tv_otherGender_item_title"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:fontFamily="@font/montserrat_medium"
+                                            android:text="@string/title_other"
+                                            android:textColor="@color/title_black"
+                                            android:textSize="12sp" />
+
+                                        <TextView
+                                            android:id="@+id/tv_otherGender_item_value"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentEnd="true"
+                                            android:layout_centerVertical="true"
+                                            android:layout_marginStart="15dp"
+                                            android:fontFamily="@font/montserrat_medium"
+                                            android:textColor="@color/title_black"
+                                            android:textSize="12sp"
+                                            tools:text="10%" />
+
+
+                                    </RelativeLayout>
+
+                                </LinearLayout>
+
+
+                                <View
+                                    android:layout_width="1dp"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/otherGenderColorActive" />
+
+                                <LinearLayout
+                                    android:id="@+id/interestsStatistic"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center"
+                                    android:layout_weight="1"
+                                    android:orientation="vertical"
+                                    android:padding="16dp">
+
+                                    <TextView
+                                        style="@style/profileTitleStyle"
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:text="@string/top_3_interest_title"
+                                        android:textAlignment="center"
+                                        android:textColor="@color/black"
+                                        android:textSize="12sp"
+                                        app:layout_constraintEnd_toEndOf="parent"
+                                        app:layout_constraintStart_toStartOf="parent"
+                                        app:layout_constraintTop_toTopOf="parent" />
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center">
+
+                                        <ProgressBar
+                                            android:id="@+id/first_interest_progress_bar"
+                                            style="?android:attr/progressBarStyleHorizontal"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="8dp"
+                                            android:layout_below="@id/first_interest_item_title"
+                                            android:layout_marginTop="16dp"
+                                            android:progressDrawable="@drawable/progress_bar_rounded_corner"
+                                            android:progressTint="@color/blue"
+                                            tools:progress="50" />
+
+                                        <TextView
+                                            android:id="@+id/first_interest_item_title"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toStartOf="@+id/first_interest_item_value"
+                                            android:ellipsize="end"
+                                            android:fontFamily="@font/montserrat_medium"
+                                            android:maxLines="1"
+                                            android:textColor="@color/title_black"
+                                            android:textSize="12sp"
+                                            tools:text="Instagram klasjdalksjdakldakljfalkdjf" />
+
+                                        <TextView
+                                            android:id="@+id/first_interest_item_value"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentEnd="true"
+                                            android:layout_centerVertical="true"
+                                            android:layout_marginStart="15dp"
+                                            android:fontFamily="@font/montserrat_medium"
+                                            android:textColor="@color/title_black"
+                                            android:textSize="12sp"
+                                            tools:text="50%" />
+
+
+                                    </RelativeLayout>
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="8dp">
+
+                                        <ProgressBar
+                                            android:id="@+id/second_interest_progress_bar"
+                                            style="?android:attr/progressBarStyleHorizontal"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="8dp"
+                                            android:layout_below="@id/second_interest_item_title"
+                                            android:layout_marginTop="16dp"
+                                            android:progressDrawable="@drawable/progress_bar_rounded_corner"
+                                            tools:progress="20" />
+
+                                        <TextView
+                                            android:id="@+id/second_interest_item_title"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toStartOf="@id/second_interest_item_value"
+                                            android:ellipsize="end"
+                                            android:fontFamily="@font/montserrat_medium"
+                                            android:maxLines="1"
+                                            android:textColor="@color/title_black"
+                                            android:textSize="12sp"
+                                            tools:text="Language Exchanges afgdagfdadgfgdf" />
+
+                                        <TextView
+                                            android:id="@+id/second_interest_item_value"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentEnd="true"
+                                            android:layout_centerVertical="true"
+                                            android:layout_marginStart="15dp"
+                                            android:fontFamily="@font/montserrat_medium"
+                                            android:textColor="@color/title_black"
+                                            android:textSize="12sp"
+                                            tools:text="20%" />
+
+
+                                    </RelativeLayout>
+
+                                    <RelativeLayout
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:layout_gravity="center"
+                                        android:layout_marginTop="8dp">
+
+                                        <ProgressBar
+                                            android:id="@+id/third_interest_progress_bar"
+                                            style="?android:attr/progressBarStyleHorizontal"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="8dp"
+                                            android:layout_below="@id/third_interest_item_title"
+                                            android:layout_marginTop="16dp"
+                                            android:progressDrawable="@drawable/progress_bar_rounded_corner"
+                                            android:progressTint="@color/primary_color"
+                                            tools:progress="10" />
+
+                                        <TextView
+                                            android:id="@+id/third_interest_item_title"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentStart="true"
+                                            android:layout_centerVertical="true"
+                                            android:layout_toStartOf="@id/third_interest_item_value"
+                                            android:ellipsize="end"
+                                            android:fontFamily="@font/montserrat_medium"
+                                            android:maxLines="1"
+                                            android:textColor="@color/title_black"
+                                            android:textSize="12sp"
+                                            tools:text="Language asdasdasdaasg" />
+
+                                        <TextView
+                                            android:id="@+id/third_interest_item_value"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_alignParentEnd="true"
+                                            android:layout_centerVertical="true"
+                                            android:layout_marginStart="15dp"
+                                            android:fontFamily="@font/montserrat_medium"
+                                            android:textColor="@color/title_black"
+                                            android:textSize="12sp"
+                                            tools:text="10%" />
+
+
+                                    </RelativeLayout>
+
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
+
+                        </LinearLayout>
+
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cv_event_map"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="16dp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="15dp"
+                        app:cardElevation="10dp">
+
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/static_map_image_view"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:scaleType="fitCenter"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                tools:src="@drawable/ic_launcher_background" />
+
+                            <ImageButton
+                                android:id="@+id/direction_button"
+                                android:layout_width="50dp"
+                                android:layout_height="50dp"
+                                android:layout_margin="16dp"
+                                android:background="@android:color/transparent"
+                                android:src="@drawable/ic_direction"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent" />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+
+                    <!--                <androidx.cardview.widget.CardView-->
+                    <!--                    android:id="@+id/cv_interests_container"-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="230dp"-->
+                    <!--                    android:layout_marginStart="35dp"-->
+                    <!--                    android:layout_marginTop="15dp"-->
+                    <!--                    android:layout_marginEnd="35dp"-->
+                    <!--                    app:cardBackgroundColor="@color/white"-->
+                    <!--                    app:cardCornerRadius="15dp"-->
+                    <!--                    app:cardElevation="10dp"-->
+                    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--                    app:layout_constraintHorizontal_bias="0.0"-->
+                    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                    <!--                    app:layout_constraintTop_toBottomOf="@+id/relativeLayout">-->
+
+                    <!--                    <LinearLayout-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="match_parent"-->
+                    <!--                        android:layout_gravity="center"-->
+
+                    <!--                        android:orientation="vertical">-->
+
+
+                    <!--                        <TextView-->
+                    <!--                            android:id="@+id/tv_events_interests"-->
+                    <!--                            android:layout_width="wrap_content"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_gravity="center"-->
+                    <!--                            android:layout_marginTop="20dp"-->
+                    <!--                            android:fontFamily="@font/montserrat_semibold"-->
+                    <!--                            android:gravity="center"-->
+                    <!--                            android:text="@string/title_interests"-->
+                    <!--                            android:textColor="@color/title_black"-->
+                    <!--                            android:textSize="14sp" />-->
+
+
+                    <!--                        <app.futured.donut.DonutProgressView-->
+                    <!--                            android:id="@+id/eventInterestsChart"-->
+                    <!--                            android:layout_width="120dp"-->
+                    <!--                            android:layout_height="120dp"-->
+                    <!--                            android:layout_gravity="center"-->
+                    <!--                            android:layout_marginTop="41dp"-->
+                    <!--                            android:layout_marginBottom="50dp" />-->
+
+                    <!--                    </LinearLayout>-->
+
+                    <!--                </androidx.cardview.widget.CardView>-->
+
+                    <!--                <androidx.cardview.widget.CardView-->
+                    <!--                    android:id="@+id/cv_event_description_container"-->
+                    <!--                    android:layout_width="match_parent"-->
+                    <!--                    android:layout_height="230dp"-->
+                    <!--                    android:layout_marginStart="35dp"-->
+                    <!--                    android:layout_marginTop="15dp"-->
+                    <!--                    android:layout_marginEnd="35dp"-->
+                    <!--                    android:layout_marginBottom="35dp"-->
+                    <!--                    app:cardBackgroundColor="@color/white"-->
+                    <!--                    app:cardCornerRadius="15dp"-->
+                    <!--                    app:cardElevation="10dp"-->
+                    <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--                    app:layout_constraintHorizontal_bias="0.0"-->
+                    <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                    <!--                    app:layout_constraintTop_toBottomOf="@+id/cv_interests_items_value">-->
+
+                    <!--                    <LinearLayout-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="match_parent"-->
+                    <!--                        android:layout_gravity="center"-->
+                    <!--                        android:orientation="vertical">-->
+
+
+                    <!--                        <TextView-->
+                    <!--                            android:id="@+id/eventCategory"-->
+                    <!--                            android:layout_width="wrap_content"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_gravity="center"-->
+                    <!--                            android:layout_marginTop="20dp"-->
+                    <!--                            android:fontFamily="@font/montserrat_semibold"-->
+                    <!--                            android:gravity="center"-->
+                    <!--                            android:textColor="@color/title_black"-->
+                    <!--                            android:textSize="14sp" />-->
+
+                    <!--                        <TextView-->
+                    <!--                            android:id="@+id/eventsDescription"-->
+                    <!--                            android:layout_width="match_parent"-->
+                    <!--                            android:layout_height="wrap_content"-->
+                    <!--                            android:layout_gravity="center"-->
+                    <!--                            android:layout_marginStart="25dp"-->
+                    <!--                            android:layout_marginTop="30dp"-->
+                    <!--                            android:layout_marginEnd="25dp"-->
+                    <!--                            android:layout_marginBottom="25dp"-->
+                    <!--                            android:fontFamily="@font/montserrat_regular"-->
+                    <!--                            android:gravity="center"-->
+                    <!--                            android:textAlignment="center"-->
+                    <!--                            android:textColor="@color/title_black"-->
+                    <!--                            android:textSize="14sp" />-->
+
+
+                    <!--                    </LinearLayout>-->
+
+                    <!--                </androidx.cardview.widget.CardView>-->
+
+
+                    <androidx.cardview.widget.CardView
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="35dp"
+                        app:cardBackgroundColor="@color/white"
+                        app:cardCornerRadius="15dp"
+                        app:cardElevation="10dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/cv_interests_items_value">
+
+                        <LinearLayout
+                            android:id="@+id/eventAttendecesContainer"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:visibility="gone"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="10dp"
+                                android:fontFamily="@font/montserrat_semibold"
+                                android:gravity="center"
+                                android:text="@string/attendance"
+                                android:textColor="@color/title_black"
+                                android:textSize="14sp" />
+
+                            <LinearLayout
+                                android:id="@+id/eventAttendeceList"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="5dp"
+                                android:orientation="vertical" />
+
+                            <LinearLayout
+                                android:id="@+id/seeMoreContianer"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+
+                                android:paddingStart="15dp"
+                                android:paddingTop="10dp"
+                                android:paddingEnd="15dp"
+                                android:paddingBottom="10dp">
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/see_more"
+                                    android:textColor="@color/black" />
+
+                                <ImageView
+                                    android:layout_width="6dp"
+                                    android:layout_height="10dp"
+                                    android:layout_gravity="center"
+                                    android:background="@drawable/ic_arrow_join" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+            </ScrollView>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
+
+</layout>

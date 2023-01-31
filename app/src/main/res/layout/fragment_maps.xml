@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/map"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <RelativeLayout
+                android:id="@+id/RL_appBar_container"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+
+                android:elevation="5dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/userImage"
+                    android:layout_width="31dp"
+                    android:layout_height="31dp"
+                    android:layout_alignParentStart="true"
+
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="16dp"
+                   />
+
+
+
+                <TextView
+                    android:id="@+id/tv_inbox_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:gravity="center"
+                    android:textSize="16sp"
+                    android:text="@string/title_event"
+                    android:textColor="@color/inactive_black" />
+
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/img_mapFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerInParent="true"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="16dp"
+                    android:elevation="15dp"
+                    android:thumb="@drawable/switch_map_filter_thumb_with_icon_bg_selector"
+                    app:track="@drawable/track_selector"
+                    tools:checked="true" />
+
+
+            </RelativeLayout>
+
+
+            <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/bannerAdView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                ads:adSize="BANNER"
+                ads:adUnitId="ca-app-pub-6206027456764756/4483859663"
+                ads:layout_constraintEnd_toEndOf="parent"
+                ads:layout_constraintStart_toStartOf="parent"
+                ads:layout_constraintTop_toBottomOf="@id/RL_appBar_container" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:layout_marginStart="18dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="18dp"
+                android:background="@drawable/shape_white_with_radius_twenty_dp"
+                android:elevation="5dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/userImage2"
+                    android:layout_width="31dp"
+                    android:layout_height="31dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerInParent="true"
+
+                    android:layout_gravity="center"
+                    android:layout_marginStart="16dp"
+                    app:civ_border_color="#FF000000" />
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignTop="@+id/userImage2"
+                    android:layout_alignBottom="@+id/userImage2"
+                    android:layout_centerInParent="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@+id/userImage2"
+                    android:background="@color/view_bg" />
+
+                <fragment
+
+                    android:id="@+id/place_autocomplete_fragment"
+                    android:name="com.google.android.libraries.places.widget.AutocompleteSupportFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="5dp"
+
+
+                    android:layout_toEndOf="@+id/view"
+                    android:background="@android:color/transparent" />
+
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/markerPosition"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_centerHorizontal="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/marker" />
+
+            <ImageView
+                android:id="@+id/marker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_marker_pin"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/ivMarkerPoint"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/ivMarkerPoint"
+                android:layout_width="5dp"
+                android:layout_height="5dp"
+
+                android:layout_centerHorizontal="true"
+                android:alpha="0"
+                android:src="@drawable/ic_dark_circle"
+                android:visibility="visible"
+                app:layout_constraintEnd_toEndOf="@+id/marker"
+                app:layout_constraintStart_toStartOf="@+id/marker"
+                app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+            <View
+                android:id="@+id/guideline"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/ChipTags"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+
+                android:layout_marginEnd="10dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.StaggeredGridLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/RL_appBar_container"
+                tools:listitem="@layout/item_profile_tags" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/ll_bottomSheet_event_aroundMe"
+                    android:layout_alignParentEnd="true"
+
+                    android:layout_marginEnd="18dp"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:id="@+id/currentLocation"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/shape_white_with_radius_map_add_evet">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/ic_current_location" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="5dp"
+                        android:background="@drawable/shape_white_with_radius_map_add_evet"
+                        android:padding="7dp">
+
+                        <CheckBox
+                            android:id="@+id/changeMap"
+
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/ic_map_satellite"
+                            android:button="@null" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:id="@+id/addNewEvent"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/shape_white_with_radius_map_add_evet">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="10dp"
+                            android:background="@drawable/ic_map_add_event" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/tvZoomText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/ll_bottomSheet_event_aroundMe"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/shape_map_zoom_bg"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
+
+
+                    android:textColor="@color/white" />
+
+
+                <!--                <include-->
+                <!--                    android:id="@+id/instruction_map_dialog"-->
+                <!--                    layout="@layout/instruction_help_dialog"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="match_parent"-->
+                <!--                    />-->
+
+
+                <LinearLayout
+                    android:id="@+id/ll_bottomSheet_event_aroundMe"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/shape_round_top_events_around_me"
+                    android:orientation="vertical"
+
+                    >
+
+                    <LinearLayout
+                        android:id="@+id/llExploarMoreHeader"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/arrow"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="3dp"
+                            android:src="@drawable/ic_up_arrow" />
+
+                        <TextView
+                            android:id="@+id/tv_map_bottom_sheet_event_around_me_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="-4dp"
+                            android:layout_marginBottom="5dp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="@string/nearByEvent"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rc_map_bottom_sheet_event_around_me_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:orientation="horizontal"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:id="@+id/noDataFoundTxt"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="50dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginBottom="50dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:gravity="center"
+
+                        android:text="No events as yet in your chosen categories. Adjust your settings or check back later."
+                        android:textColor="@color/white"
+                        android:visibility="gone" />
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+</layout>

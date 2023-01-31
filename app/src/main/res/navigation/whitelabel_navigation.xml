@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/whitelabel_navigation"
+    >
+
+<!--
+    <fragment
+        android:id="@+id/inboxFragmentWhiteLabel"
+        android:name="com.friendzrandroid.messages.fragment.messages.messages.inbox.InboxFragment"
+        android:label="inbox_fragment_whitelabel"
+        tools:layout="@layout/inbox_fragment">
+      &lt;!&ndash;  <action
+            android:id="@+id/action_navigation_to_Chat"
+            app:destination="@id"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <action
+            android:id="@+id/action_navigation_Inbox_to_myFriendsFragment"
+            app:destination="@id/myFriendsFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="myapp://chatDetails" />&ndash;&gt;
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/chatFragmentWhiteLabel"
+        android:name="com.friendzrandroid.messages.fragment.messages.messages.chat.ChatFragment"
+        android:label="fragment_chat_whitelabel"
+        tools:layout="@layout/fragment_chat" >
+&lt;!&ndash;        <argument
+            android:name="chatID"
+            app:argType="string"
+            app:nullable="false" />
+
+        <argument
+            android:name="chatImage"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="chatName"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+
+        <argument
+            android:name="chatIsEvent"
+            app:argType="boolean"
+            app:nullable="false" />
+
+        <argument
+            android:name="myEvent"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <argument
+            android:name="isFriend"
+            android:defaultValue="false"
+            app:argType="boolean" />
+        <argument
+            android:name="chatIsGroup"
+            android:defaultValue="false"
+            app:argType="boolean" />&ndash;&gt;
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/myFriendsFragmentWhiteLabel"
+        android:name="com.friendzrandroid.messages.fragment.messages.messages.allFriends.AllFriendsFragment"
+        android:label="friends_fragment"
+        tools:layout="@layout/all_users_fragment">
+&lt;!&ndash;        <action&ndash;&gt;
+&lt;!&ndash;            android:id="@+id/action_friendsFragment_to_chatFragment"&ndash;&gt;
+&lt;!&ndash;            app:destination="@id/navigation_Chat"&ndash;&gt;
+&lt;!&ndash;            app:enterAnim="@anim/slide_in_right"&ndash;&gt;
+&lt;!&ndash;            app:exitAnim="@anim/slide_out_left"&ndash;&gt;
+&lt;!&ndash;            app:popEnterAnim="@anim/slide_in_left"&ndash;&gt;
+&lt;!&ndash;            app:popExitAnim="@anim/slide_out_right" />&ndash;&gt;
+&lt;!&ndash;        <action&ndash;&gt;
+&lt;!&ndash;            android:id="@+id/action_myFriendsFragment_to_createGroupFragment"&ndash;&gt;
+&lt;!&ndash;            app:destination="@id/createGroupFragment"&ndash;&gt;
+&lt;!&ndash;            app:enterAnim="@anim/slide_in_right"&ndash;&gt;
+&lt;!&ndash;            app:exitAnim="@anim/slide_out_left"&ndash;&gt;
+&lt;!&ndash;            app:popEnterAnim="@anim/slide_in_left"&ndash;&gt;
+&lt;!&ndash;            app:popExitAnim="@anim/slide_out_right" />&ndash;&gt;
+    </fragment>
+-->
+
+
+</navigation>

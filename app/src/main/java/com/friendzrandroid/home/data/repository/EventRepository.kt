@@ -67,7 +67,10 @@ class EventRepository @Inject constructor(private val api: EventAPIS) : SafeApiR
                     data.PageNumber,
                     data.userLat,
                     data.userLang,
-                    data.filterSelectedTags
+                    data.filterSelectedTags,
+                    data.dateCriteria,
+                    data.startDate,
+                    data.endDate
                 )
             } else {
                 api.getOnlyEventsAroundPublic(

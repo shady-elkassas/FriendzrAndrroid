@@ -7,7 +7,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
-import android.net.Uri
+import android.location.Criteria
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -27,9 +27,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.signature.ObjectKey
 import com.friendzrandroid.R
 import com.friendzrandroid.auth.presentation.view.activity.AuthActivity
 import com.friendzrandroid.core.paggingList.BaseAdapterListener
@@ -61,7 +58,6 @@ import com.google.maps.android.SphericalUtil
 import com.squareup.picasso.Picasso
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import java.io.File
 import java.text.DecimalFormat
 
 
@@ -88,6 +84,9 @@ class MapsFragment : BaseFragment(), GoogleMap.OnMyLocationButtonClickListener,
 
     private var isFromEventDetails: Boolean = false
     private val selectedTags = ArrayList<TagsModel>()
+    private var dateCriteria: String? = null
+    private var startDate: String? = null
+    private var endDate: String? = null
 
 
     val binding by lazy(LazyThreadSafetyMode.NONE) {
@@ -257,12 +256,14 @@ class MapsFragment : BaseFragment(), GoogleMap.OnMyLocationButtonClickListener,
 //
 //            if (token != null && !token.equals("")) {
 
+            Log.e("mapFilter", "mapFilterSettings: $isChecked, $showDialog")
+
 
             if (!isChecked && showDialog) {
 //                val tagsList = UserSessionManagement.getTagsList("UserMapFilterTags")
 //                selectedTags.addAll(tagsList)
 
-                if (selectedTags.size > 0) {
+                if (selectedTags.size > 0 || dateCriteria != null || startDate != null || endDate != null) {
 
                     ConfirmationDialog(
                         requireContext(),
@@ -278,7 +279,9 @@ class MapsFragment : BaseFragment(), GoogleMap.OnMyLocationButtonClickListener,
                                 "filter by category",
                                 viewModel.allInterestList,
                                 selectedTags,
-
+                                dateCriteria,
+                                startDate,
+                                endDate,
                                 this
                             )
                             showDialog = true
@@ -318,7 +321,9 @@ class MapsFragment : BaseFragment(), GoogleMap.OnMyLocationButtonClickListener,
                         "Events’ filter",
                         viewModel.allInterestList,
                         selectedTags,
-
+                        dateCriteria,
+                        startDate,
+                        endDate,
                         this
                     )
 
@@ -391,11 +396,11 @@ class MapsFragment : BaseFragment(), GoogleMap.OnMyLocationButtonClickListener,
 
         selectedTags.clear()
         UserSessionManagement.deleteMapFilter()
-        initObs("")
+        initObs("", null, null, null)
 
 
 
-        initRecyclerView("")
+        initRecyclerView("", null, null, null)
 
     }
 
@@ -416,7 +421,12 @@ class MapsFragment : BaseFragment(), GoogleMap.OnMyLocationButtonClickListener,
     }
 
 
-    fun initObs(filterSelectedTags: String) {
+    fun initObs(
+        filterSelectedTags: String,
+        dateCriteria: String?,
+        startDate: String?,
+        endDate: String?
+    ) {
 
 //        viewModel.getAllEvents()
 
@@ -426,7 +436,7 @@ class MapsFragment : BaseFragment(), GoogleMap.OnMyLocationButtonClickListener,
         viewModel.userLong = longitude
         Log.d("map", "getUserLocation: lat is $latitude ")
         Log.d("map", "getUserLocation: long is $longitude ")
-        viewModel.getAroundMeData(filterSelectedTags)
+        viewModel.getAroundMeData(filterSelectedTags, dateCriteria, startDate, endDate)
 
         if (!filterSelectedTags.equals("")) {
         }
@@ -993,7 +1003,7 @@ class MapsFragment : BaseFragment(), GoogleMap.OnMyLocationButtonClickListener,
 
             if (!this::eventAroundMeAdapterOnly.isInitialized) {
 
-                initRecyclerView(convertTagsToUpdate)
+                initRecyclerView(convertTagsToUpdate, dateCriteria, startDate, endDate)
             } else {
                 eventAroundMeAdapterOnly.reloadData()
             }
@@ -1003,12 +1013,20 @@ class MapsFragment : BaseFragment(), GoogleMap.OnMyLocationButtonClickListener,
     }
 
 
-    private fun initRecyclerView(filterSelectedTags: String) {
+    private fun initRecyclerView(
+        filterSelectedTags: String,
+        dataCriteria: String?,
+        startDate: String?,
+        endDate: String?
+    ) {
         getUserLocation()
 
         onlyEventsAroundMeViewModel.userLat = latitude
         onlyEventsAroundMeViewModel.userLang = longitude
         onlyEventsAroundMeViewModel.filterSelectedTags = filterSelectedTags
+        onlyEventsAroundMeViewModel.dateCriteria = dataCriteria
+        onlyEventsAroundMeViewModel.startData = startDate
+        onlyEventsAroundMeViewModel.endData = endDate
 
         eventAroundMeAdapterOnly =
             OnlyEventsAroundMeAdapter(onlyEventsAroundMeViewModel, this, this)
@@ -1081,7 +1099,7 @@ class MapsFragment : BaseFragment(), GoogleMap.OnMyLocationButtonClickListener,
             convertTagsToUpdate = convertTagsToUpdate(selectedTags)
 
         }
-        initObs(convertTagsToUpdate)
+        initObs(convertTagsToUpdate, dateCriteria, startDate, endDate)
 
     }
 
@@ -1286,7 +1304,12 @@ class MapsFragment : BaseFragment(), GoogleMap.OnMyLocationButtonClickListener,
         return bitmap
     }
 
-    override fun onMapFilterSave(selectedTags: ArrayList<TagsModel>) {
+    override fun onMapFilterSave(
+        selectedTags: ArrayList<TagsModel>,
+        dateCriteria: String?,
+        startDate: String?,
+        endDate: String?
+    ) {
 
 
         val token = UserSessionManagement.getKeyAuthToken()
@@ -1295,12 +1318,14 @@ class MapsFragment : BaseFragment(), GoogleMap.OnMyLocationButtonClickListener,
             val size = selectedTags.size
             if (selectedTags.size > 0) {
 
-                UserSessionManagement.saveMapFilter(selectedTags)
+                UserSessionManagement.saveMapFilter(selectedTags, dateCriteria, startDate, endDate)
 
 
                 this.selectedTags.clear()
                 this.selectedTags.addAll(selectedTags)
-
+                this.dateCriteria = dateCriteria
+                this.startDate = startDate
+                this.endDate = endDate
 
                 val filterSelectedTags = convertTagsToUpdate(selectedTags)
 
@@ -1308,10 +1333,26 @@ class MapsFragment : BaseFragment(), GoogleMap.OnMyLocationButtonClickListener,
                 viewModel.deleteLiveData()
                 mMap.clear()
 
-                initObs(filterSelectedTags)
-                initRecyclerView(filterSelectedTags)
+                initObs(filterSelectedTags, dateCriteria, startDate, endDate)
+                initRecyclerView(filterSelectedTags, dateCriteria, startDate, endDate)
 
                 Log.d("mapFilter", "selectedTags.size=$size")
+
+            } else if (dateCriteria != null || startDate != null || endDate != null) {
+
+                Log.d("mapFilter", "$dateCriteria, $startDate, $endDate")
+
+                UserSessionManagement.saveMapFilter(selectedTags, dateCriteria, startDate, endDate)
+
+                this.dateCriteria = dateCriteria
+                this.startDate = startDate
+                this.endDate = endDate
+
+                viewModel.deleteLiveData()
+                mMap.clear()
+
+                initObs("", dateCriteria, startDate, endDate)
+                initRecyclerView("", dateCriteria, startDate, endDate)
 
             } else {
                 Log.d("mapFilter", "selectedTags.size=$size")

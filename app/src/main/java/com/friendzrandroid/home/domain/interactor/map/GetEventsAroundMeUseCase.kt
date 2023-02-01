@@ -14,7 +14,15 @@ class GetEventsAroundMeUseCase @Inject constructor(private val eventRepository: 
     BaseUseCase<MapFilterRequest, ResultWrapper<BaseDataWrapper<EventAroundMeResponse>>>() {
     override fun execute(par: MapFilterRequest): Flow<ResultWrapper<BaseDataWrapper<EventAroundMeResponse>>> {
         return flow {
-            emit(eventRepository.getAroundMeEvents(par.latLang,par.filterSelectedTags))
+            emit(
+                eventRepository.getAroundMeEvents(
+                    par.latLang,
+                    par.filterSelectedTags,
+                    par.dateCriteria,
+                    par.startDate,
+                    par.endDate
+                )
+            )
 
         }
     }

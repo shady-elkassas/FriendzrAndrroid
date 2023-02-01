@@ -2,6 +2,7 @@ package com.friendzrandroid.core.utils
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.location.Criteria
 import android.util.Log
 import com.friendzrandroid.auth.data.model.LoginResponseData
 import com.friendzrandroid.home.data.model.*
@@ -35,6 +36,9 @@ object UserSessionManagement {
     private val USER_IPREFERE_HASHTAG = "UserIPrefereHashTag"
     private val USER_PREFER_TAGS = "UserPreferTags"
     private val USER_MAP_FILTER_TAGS = "UserMapFilterTags"
+    private val USER_MAP_FILTER_DATE_CRITERIA = "UserMapFilterDateCriteria"
+    private val USER_MAP_FILTER_START_DATE = "UserMapFilterStartDate"
+    private val USER_MAP_FILTER_END_DATE = "UserMapFilterEndDate"
     private val USER_MAP_FILTER_STATUS = "UserMapFilterStatus"
     private val USER_BIO = "UserBio"
     private val USER_AGE = "UserAge"
@@ -174,7 +178,6 @@ object UserSessionManagement {
         return value
         //returning the list
     }
-
 
 
     fun getInterestsForProfileType(): List<String> {
@@ -325,15 +328,22 @@ object UserSessionManagement {
 
     }
 
-    fun saveMapFilter(listoftagsmodel: List<TagsModel>) {
+    fun saveMapFilter(
+        listoftagsmodel: List<TagsModel>,
+        dateCriteria: String?,
+        startDate: String?,
+        endDate: String?
+    ) {
 
         editor.putString(USER_MAP_FILTER_TAGS, convertListToJson(listoftagsmodel))
+        editor.putString(USER_MAP_FILTER_DATE_CRITERIA, dateCriteria ?: "")
+        editor.putString(USER_MAP_FILTER_START_DATE, startDate ?: "")
+        editor.putString(USER_MAP_FILTER_END_DATE, endDate ?: "")
         editor.putBoolean(USER_MAP_FILTER_STATUS, true)
         editor.apply()
 
 
     }
-
 
 
     fun isMapFilterOpen(): Boolean {
@@ -359,6 +369,9 @@ object UserSessionManagement {
 
     fun deleteMapFilter() {
         editor.putString(USER_MAP_FILTER_TAGS, "")
+        editor.putString(USER_MAP_FILTER_DATE_CRITERIA, "")
+        editor.putString(USER_MAP_FILTER_START_DATE, "")
+        editor.putString(USER_MAP_FILTER_END_DATE, "")
         editor.putBoolean(USER_MAP_FILTER_STATUS, false)
         editor.apply()
     }

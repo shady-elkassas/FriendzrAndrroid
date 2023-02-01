@@ -21,8 +21,6 @@ import androidx.navigation.fragment.findNavController
 import com.app.imagepickerlibrary.ImagePicker
 import com.app.imagepickerlibrary.ImagePicker.Companion.registerImagePicker
 import com.app.imagepickerlibrary.listener.ImagePickerResultListener
-import com.app.imagepickerlibrary.model.PickExtension
-import com.app.imagepickerlibrary.model.PickerType
 import com.friendzrandroid.R
 import com.friendzrandroid.auth.presentation.view.activity.AuthActivity
 import com.friendzrandroid.core.presentation.ui.BaseFragment
@@ -42,6 +40,7 @@ import com.friendzrandroid.home.dialog.ConfirmationDialog.ConfirmationDialog
 import com.friendzrandroid.home.dialog.ImageVerificationDialog
 import com.friendzrandroid.home.dialog.tagsDialog.TagDialogListener
 import com.friendzrandroid.home.dialog.tagsDialog.TagsDialogFragment
+import com.friendzrandroid.home.fragment.more.myProfile.MyProfileFragmentDirections
 import com.friendzrandroid.utils.ProfileUtil
 import com.google.android.material.chip.ChipGroup
 import dagger.hilt.android.AndroidEntryPoint
@@ -424,11 +423,9 @@ class EditProfileFragment : BaseFragment(), TagDialogListener, ImagePickerResult
 
         binding.btnEditProfileAddAdditionalImages.setOnClickListener {
 //            AdditionalImagesDialog(this).showDialog(requireContext())
-            checkPermissionForImage()
+//            checkPermissionForImage()
 
-//            FishBun.with(requireActivity())
-//                .setImageAdapter( GlideAdapter())
-//                .startAlbumWithOnActivityResult(200)
+            findNavController().navigate(EditProfileFragmentDirections.actionEditProfileFragmentToAdditionalImagesFragment())
 
         }
         binding.btnEditProfileLogout.setOnClickListener {
@@ -866,17 +863,17 @@ class EditProfileFragment : BaseFragment(), TagDialogListener, ImagePickerResult
     }
 
     override fun onAddImages() {
-        imagePicker
-            .title("Add additional images")
-            .multipleSelection(enable = true, maxCount = 5)
-            .showCountInToolBar(true)
-            .showFolder(true)
-            .cameraIcon(true)
-            .doneIcon(true)
-            .allowCropping(true)
-            .compressImage(false)
-            .extension(PickExtension.ALL)
-        imagePicker.open(PickerType.GALLERY)
+//        imagePicker
+//            .title("Add additional images")
+//            .multipleSelection(enable = true, maxCount = 5)
+//            .showCountInToolBar(true)
+//            .showFolder(true)
+//            .cameraIcon(true)
+//            .doneIcon(true)
+//            .allowCropping(true)
+//            .compressImage(false)
+//            .extension(PickExtension.ALL)
+//        imagePicker.open(PickerType.GALLERY)
 
 
 

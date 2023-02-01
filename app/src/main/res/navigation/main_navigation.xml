@@ -511,6 +511,9 @@
         <!--            app:argType="com.friendzrandroid.messages.data.model.UserProfileData"-->
         <!--            app:nullable="true"-->
         <!--            android:defaultValue="@null"/>-->
+        <action
+            android:id="@+id/action_editProfileFragment_to_additionalImagesFragment"
+            app:destination="@id/additionalImagesFragment" />
     </fragment>
     <fragment
         android:id="@+id/userProfileFragment"
@@ -647,4 +650,8 @@
 
             />
     </fragment>
+    <fragment
+        android:id="@+id/additionalImagesFragment"
+        android:name="com.friendzrandroid.home.fragment.more.editProfile.AdditionalImagesFragment"
+        android:label="AdditionalImagesFragment" />
 </navigation>

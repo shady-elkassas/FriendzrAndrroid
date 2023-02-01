@@ -1,5 +1,6 @@
 package com.friendzrandroid.core.data.network
 
+import android.util.Log
 import com.google.gson.Gson
 import org.json.JSONObject
 import retrofit2.HttpException
@@ -58,6 +59,9 @@ abstract class SafeApiRequest {
                 ResultWrapper.ServerError
             }
         } catch (throwable: Throwable) {
+
+            Log.e("TAG", "apiRequest: $throwable")
+
             return when (throwable) {
                 is IOException -> ResultWrapper.NetworkError(
                     BaseDataWrapper<Nothing>(
@@ -91,6 +95,9 @@ abstract class SafeApiRequest {
 
 
     private fun convertErrorBody(throwable: HttpException): ErrorResponse? {
+
+        Log.e("TAG", "convertErrorBody: $throwable")
+
         return try {
             throwable.response()?.errorBody()?.charStream()?.let {
                 Gson().fromJson(it, ErrorResponse::class.java)

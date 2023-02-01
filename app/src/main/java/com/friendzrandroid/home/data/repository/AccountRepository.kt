@@ -8,10 +8,18 @@ import com.friendzrandroid.home.data.datasource.AccountAPIS
 import com.friendzrandroid.home.data.model.*
 import com.friendzrandroid.home.domain.model.FormDataRequestWithImage
 import com.friendzrandroid.home.domain.model.UserSettingsRequest
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 class AccountRepository @Inject constructor(private val api: AccountAPIS) : SafeApiRequest() {
 
+
+    suspend fun updateAdditionalImages(images: ArrayList<MultipartBody.Part>): ResultWrapper<Any> {
+        val token = UserSessionManagement.getKeyAuthToken()
+        return apiRequest {
+            api.updateAdditionalImages(token!!, images)
+        }
+    }
 
     suspend fun getMyProfile(): ResultWrapper<BaseDataWrapper<UserProfileData>> {
 

@@ -14,6 +14,7 @@ import com.friendzrandroid.core.presentation.ui.BaseFragment
 import com.friendzrandroid.core.presentation.viewmodel.BaseViewModel
 import com.friendzrandroid.core.utils.SelectImageUtil
 import com.friendzrandroid.core.utils.loadImage
+import com.friendzrandroid.core.utils.show
 import com.friendzrandroid.databinding.FragmentAdditionalImagesBinding
 
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,6 +35,8 @@ class AdditionalImagesFragment : BaseFragment() {
     var firstImageFile: String? = null
     var imageNumber: Int = 0
 
+    val selectedImages: ArrayList<File> = arrayListOf()
+
     lateinit var imageUtil: SelectImageUtil
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,28 +48,28 @@ class AdditionalImagesFragment : BaseFragment() {
             file = File(it.path)
             firstImageFile = it.path
 
-
+            selectedImages.add(file!!)
 
             when (imageNumber) {
                 1 -> {
                     binding.imgAdditionalImage.loadImage(file!!.path)
-
+                    binding.additionalImagesClose.show()
                 }
                 2 -> {
                     binding.imgAdditionalImage1.loadImage(file!!.path)
-
+                    binding.additionalImagesClose2.show()
                 }
                 3 -> {
                     binding.imgAdditionalImage2.loadImage(file!!.path)
-
+                    binding.additionalImagesClose3.show()
                 }
                 4 -> {
                     binding.imgAdditionalImage3.loadImage(file!!.path)
-
+                    binding.additionalImagesClose4.show()
                 }
                 5 -> {
                     binding.imgAdditionalImage4.loadImage(file!!.path)
-
+                    binding.additionalImagesClose5.show()
                 }
 
 
@@ -94,7 +97,9 @@ class AdditionalImagesFragment : BaseFragment() {
 
         binding.btnAddAdditionalImagesSave.setOnClickListener {
 
-            findNavController().popBackStack()
+            viewModel.updateAdditionalImages(selectedImages)
+
+//            findNavController().popBackStack()
 
         }
         binding.con.setOnClickListener {

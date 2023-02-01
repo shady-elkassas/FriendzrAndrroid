@@ -140,12 +140,12 @@
 
                                 <ImageView
                                     android:id="@+id/imgAdditionalImage"
-                                    android:src="@drawable/place_holder"
-
                                     android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
 
-                                    android:scaleType="centerCrop" />
+                                    android:layout_height="match_parent"
+                                    android:scaleType="centerCrop"
+
+                                    android:src="@drawable/place_holder" />
 
                                 <ImageView
                                     android:id="@+id/additional_images_close"
@@ -155,7 +155,8 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginEnd="5dp"
                                     android:background="@drawable/close_red_bg"
-                                    android:visibility="gone" />
+                                    android:visibility="gone"
+                                    tools:visibility="visible" />
                             </androidx.cardview.widget.CardView>
 
 
@@ -206,11 +207,11 @@
 
                                 <ImageView
                                     android:id="@+id/imgAdditionalImage1"
-                                    android:src="@drawable/place_holder"
-
                                     android:layout_width="match_parent"
+
                                     android:layout_height="match_parent"
-                                    android:scaleType="centerCrop" />
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/place_holder" />
 
                                 <ImageView
                                     android:id="@+id/additional_images_close2"
@@ -243,6 +244,7 @@
                 android:orientation="horizontal"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp">
+
                 <androidx.cardview.widget.CardView
                     android:layout_width="0dp"
                     android:layout_height="150dp"
@@ -285,9 +287,9 @@
                                     android:id="@+id/imgAdditionalImage2"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@drawable/place_holder"
+                                    android:scaleType="centerCrop"
 
-                                    android:scaleType="centerCrop" />
+                                    android:src="@drawable/place_holder" />
 
                                 <ImageView
                                     android:id="@+id/additional_images_close4"
@@ -350,9 +352,9 @@
                                     android:id="@+id/imgAdditionalImage3"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@drawable/place_holder"
+                                    android:scaleType="centerCrop"
 
-                                    android:scaleType="centerCrop" />
+                                    android:src="@drawable/place_holder" />
 
                                 <ImageView
                                     android:id="@+id/additional_images_close3"
@@ -373,7 +375,6 @@
                     </RelativeLayout>
 
                 </androidx.cardview.widget.CardView>
-
 
 
             </LinearLayout>
@@ -428,8 +429,8 @@
                                     android:id="@+id/imgAdditionalImage4"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:src="@drawable/place_holder"
-                                    android:scaleType="centerCrop" />
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/place_holder" />
 
                                 <ImageView
                                     android:id="@+id/additional_images_close5"
@@ -493,10 +494,10 @@
                                 <ImageView
                                     android:id="@+id/imgAdditionalImage6"
                                     android:layout_width="match_parent"
-                                    android:src="@drawable/place_holder"
-
                                     android:layout_height="match_parent"
-                                    android:scaleType="centerCrop" />
+
+                                    android:scaleType="centerCrop"
+                                    android:src="@drawable/place_holder" />
 
                                 <ImageView
                                     android:id="@+id/additional_images_close6"

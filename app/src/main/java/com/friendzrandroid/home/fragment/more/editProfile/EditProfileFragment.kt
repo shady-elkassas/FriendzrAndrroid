@@ -86,6 +86,8 @@ class EditProfileFragment : BaseFragment(), TagDialogListener, ImagePickerResult
 
     private var isSavingNewData = false
 
+    private var additionalImages: List<String> = listOf()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -368,7 +370,7 @@ class EditProfileFragment : BaseFragment(), TagDialogListener, ImagePickerResult
                 && (requireActivity().checkSelfPermission(WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED)
             ) {
                 val permission = arrayOf(READ_EXTERNAL_STORAGE, CAMERA)
-                val permissionCoarse = arrayOf(WRITE_EXTERNAL_STORAGE,CAMERA)
+                val permissionCoarse = arrayOf(WRITE_EXTERNAL_STORAGE, CAMERA)
 
 
                 requestPermissions(
@@ -425,7 +427,11 @@ class EditProfileFragment : BaseFragment(), TagDialogListener, ImagePickerResult
 //            AdditionalImagesDialog(this).showDialog(requireContext())
 //            checkPermissionForImage()
 
-            findNavController().navigate(EditProfileFragmentDirections.actionEditProfileFragmentToAdditionalImagesFragment())
+            findNavController().navigate(
+                EditProfileFragmentDirections.actionEditProfileFragmentToAdditionalImagesFragment(
+                    additionalImages.toTypedArray()
+                )
+            )
 
         }
         binding.btnEditProfileLogout.setOnClickListener {
@@ -540,6 +546,9 @@ class EditProfileFragment : BaseFragment(), TagDialogListener, ImagePickerResult
     }
 
     private fun setProfileData(data: UserProfileData) {
+
+        additionalImages = data.userImages ?: emptyList()
+
         binding.edtUserName.setText(data.userName)
         binding.edtUniversityCode.setText(data.universityCode)
         binding.txtProfileDate.setText(data.birthdate)
@@ -856,8 +865,7 @@ class EditProfileFragment : BaseFragment(), TagDialogListener, ImagePickerResult
     override fun onMultiImagePick(uris: List<Uri>?) {
         showToast("hi multi")
         AdditionalImagesDialog(this).hideDialog()
-        AdditionalImagesDialog(this).showDialog(requireContext(),uris)
-
+        AdditionalImagesDialog(this).showDialog(requireContext(), uris)
 
 
     }
@@ -874,8 +882,6 @@ class EditProfileFragment : BaseFragment(), TagDialogListener, ImagePickerResult
 //            .compressImage(false)
 //            .extension(PickExtension.ALL)
 //        imagePicker.open(PickerType.GALLERY)
-
-
 
 
     }

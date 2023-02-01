@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.viewpager2.widget.ViewPager2
 import com.friendzrandroid.R
 import com.friendzrandroid.core.presentation.ui.BaseFragment
 import com.friendzrandroid.core.presentation.viewmodel.BaseViewModel
@@ -16,6 +17,7 @@ import com.friendzrandroid.core.utils.changeColor
 import com.friendzrandroid.core.utils.loadImage
 import com.friendzrandroid.core.utils.show
 import com.friendzrandroid.databinding.UserProfileFragmentBinding
+import com.friendzrandroid.home.adapter.ProfileImagesAdapter
 import com.friendzrandroid.home.data.model.DataState
 import com.friendzrandroid.home.data.model.UserProfileData
 import com.friendzrandroid.utils.ImageDialog
@@ -38,10 +40,12 @@ class MyProfileFragment : BaseFragment() {
         UserProfileFragmentBinding.inflate(layoutInflater)
     }
 
+    private lateinit var profileImagesAdapter: ProfileImagesAdapter
 
     private val viewModel: ProfileViewModel by viewModels()
 
     private lateinit var userImage: String
+    private var userAdditionalImages: ArrayList<String> = arrayListOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -95,11 +99,62 @@ class MyProfileFragment : BaseFragment() {
         }
     }
 
+    private var currentPageIndex = 0
+    private fun setUpViewPager() {
+
+        binding.imageSlider.adapter = profileImagesAdapter
+
+        //set the orientation of the viewpager using ViewPager2.orientation
+        binding.imageSlider.orientation = ViewPager2.ORIENTATION_HORIZONTAL
+
+        //select any page you want as your starting page
+
+        binding.imageSlider.currentItem = currentPageIndex
+
+        // registering for page change callback
+        binding.imageSlider.registerOnPageChangeCallback(
+            object : ViewPager2.OnPageChangeCallback() {
+
+                override fun onPageSelected(position: Int) {
+                    super.onPageSelected(position)
+
+                }
+            }
+        )
+    }
+
+
     private fun setUserData(data: UserProfileData) {
 
         userImage = data.userImage
+        userAdditionalImages.add(userImage)
 
-        binding.userProfileImage.loadImage(data.userImage)
+        if (!data.userImages.isNullOrEmpty()) {
+            userAdditionalImages.addAll(data.userImages)
+
+            binding.nextImage.show()
+            binding.nextImage.setOnClickListener {
+                if (currentPageIndex < userAdditionalImages.size - 1) {
+                    currentPageIndex += 1
+                    binding.imageSlider.currentItem = currentPageIndex
+                }
+            }
+
+            binding.previousImage.show()
+            binding.previousImage.setOnClickListener {
+                if (currentPageIndex > 0) {
+                    currentPageIndex -= 1
+                    binding.imageSlider.currentItem = currentPageIndex
+                }
+            }
+
+        }
+        profileImagesAdapter = ProfileImagesAdapter(userAdditionalImages) {
+            ImageDialog.setImageBigger(requireActivity(), it)
+        }
+        setUpViewPager()
+
+//        binding.userProfileImage.loadImage(data.userImage)
         binding.profileUserName.text = data.userName
         binding.profileSystemUserName.text = "@${data.displayedUserName}"
         binding.userAgeValue.text = data.age.toString()
@@ -114,9 +169,9 @@ class MyProfileFragment : BaseFragment() {
             ProfileUtil.addChipsViews(it, binding.profileUserPreferTags, data.prefertoList, true)
         }
 
-        binding.userProfileImage.setOnClickListener {
-            ImageDialog.setImageBigger(requireActivity(), userImage)
-        }
+//        binding.userProfileImage.setOnClickListener {
+//            ImageDialog.setImageBigger(requireActivity(), userImage)
+//        }
 
         binding.btnProfileEdit.setOnClickListener {
 

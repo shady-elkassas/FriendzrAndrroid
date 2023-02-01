@@ -1,6 +1,8 @@
 package com.friendzrandroid.home.fragment.more.editProfile
 
 import android.app.Activity
+import android.net.Uri
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.amazonaws.services.rekognition.model.CompareFacesResult
@@ -11,10 +13,7 @@ import com.friendzrandroid.home.data.repository.FaceComparingRepository
 import com.friendzrandroid.home.domain.interactor.tags.GetIamUseCase
 import com.friendzrandroid.home.domain.interactor.tags.GetInterestsUseCase
 import com.friendzrandroid.home.domain.interactor.tags.GetPreferUseCase
-import com.friendzrandroid.home.domain.interactor.userSettingsAndProfile.GetConfigurationValidationUseCase
-import com.friendzrandroid.home.domain.interactor.userSettingsAndProfile.LogoutAccountUseCase
-import com.friendzrandroid.home.domain.interactor.userSettingsAndProfile.MyProfileUseCase
-import com.friendzrandroid.home.domain.interactor.userSettingsAndProfile.UpdateMyProfileUseCase
+import com.friendzrandroid.home.domain.interactor.userSettingsAndProfile.*
 import com.friendzrandroid.home.domain.model.FormDataRequestWithImage
 import com.google.firebase.messaging.FirebaseMessaging
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -42,7 +41,8 @@ class EditProfileViewModel @Inject constructor(
     private val preferUseCase: GetPreferUseCase,
     private val logOutUseCase: LogoutAccountUseCase,
     private val faceComparingRepository: FaceComparingRepository,
-    private val configurationValidationUseCase: GetConfigurationValidationUseCase
+    private val configurationValidationUseCase: GetConfigurationValidationUseCase,
+    private val updateAdditionalImagesUseCase: UpdateAdditionalImagesUseCase
 ) : BaseViewModel() {
 
     val isLoading = MutableLiveData<Boolean>()
@@ -58,6 +58,8 @@ class EditProfileViewModel @Inject constructor(
     val userDataUpdated = MutableLiveData<DataState<UserProfileData>>()
 
     val isLoggedOut = MutableLiveData<Boolean>()
+
+    val isAdditionalImagesUploaded: MutableLiveData<Boolean> = MutableLiveData()
 
     var userYear: Int = 0
     var userMonth: Int = 0
@@ -183,16 +185,20 @@ class EditProfileViewModel @Inject constructor(
 
         val requestBodyMap = HashMap<String, RequestBody>()
 
-        requestBodyMap.put("Username", RequestBody.create(
-            "text/plain".toMediaTypeOrNull(),
-            userName
-        ))
+        requestBodyMap.put(
+            "Username", RequestBody.create(
+                "text/plain".toMediaTypeOrNull(),
+                userName
+            )
+        )
 
 
-        requestBodyMap.put("universityCode", RequestBody.create(
-            "text/plain".toMediaTypeOrNull(),
-            universityCode
-        ))
+        requestBodyMap.put(
+            "universityCode", RequestBody.create(
+                "text/plain".toMediaTypeOrNull(),
+                universityCode
+            )
+        )
 
         requestBodyMap.put(
             "birthdate",
@@ -226,7 +232,7 @@ class EditProfileViewModel @Inject constructor(
         if (userImage != null) {
             filePart = MultipartBody.Part.createFormData(
                 "UserImags",
-                 URLEncoder.encode(userImage.getName(), "utf-8"),
+                URLEncoder.encode(userImage.getName(), "utf-8"),
                 RequestBody.create("image/*".toMediaTypeOrNull(), userImage)
             )
         }
@@ -259,8 +265,6 @@ class EditProfileViewModel @Inject constructor(
             }.launchIn(viewModelScope)
 
     }
-
-
 
 
     fun getMyProfile() = myProfileData.postValue(UserSessionManagement.getUserData())
@@ -322,6 +326,31 @@ class EditProfileViewModel @Inject constructor(
                 faceComparingResult.postValue(it)
             }
         }
+
+    fun updateAdditionalImages(images: List<File>) {
+        val listOfImages = ArrayList<MultipartBody.Part>()
+
+        images.forEachIndexed { index, file ->
+            listOfImages.add(
+                MultipartBody.Part.createFormData(
+                    "files",
+                    URLEncoder.encode(file.name, "utf-8"),
+                    RequestBody.create("image/*".toMediaTypeOrNull(), file)
+                )
+            )
+        }
+
+        updateAdditionalImagesUseCase.execute(listOfImages)
+            .flowOn(Dispatchers.IO)
+            .onEach {
+                val result = validateResponse(it)
+                result?.let {
+                    Log.e("Additional Images", "updateAdditionalImages: $it")
+                    isAdditionalImagesUploaded.value = true
+                }
+            }.launchIn(viewModelScope)
+
+    }
 
 //    fun getMyProfile() {
 //

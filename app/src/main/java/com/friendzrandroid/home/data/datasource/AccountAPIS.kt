@@ -103,4 +103,11 @@ interface AccountAPIS {
         @Header("Authorization") authHeader: String
     ): Response<BaseDataWrapper<List<InterestData>>>
 
+    @POST("Account/UpdateUserImages")
+    @Multipart
+    suspend fun updateAdditionalImages(
+        @Header("Authorization") authHeader: String,
+        @Part images: List<MultipartBody.Part>
+    ): Response<BaseDataWrapper<Any>>
+
 }

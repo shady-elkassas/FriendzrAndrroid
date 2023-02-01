@@ -9,11 +9,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.friendzrandroid.R
 import com.friendzrandroid.core.presentation.ui.BaseFragment
 import com.friendzrandroid.core.presentation.viewmodel.BaseViewModel
 import com.friendzrandroid.core.utils.SelectImageUtil
 import com.friendzrandroid.core.utils.loadImage
+import com.friendzrandroid.core.utils.show
 import com.friendzrandroid.databinding.FragmentAdditionalImagesBinding
 
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,39 +36,55 @@ class AdditionalImagesFragment : BaseFragment() {
     var firstImageFile: String? = null
     var imageNumber: Int = 0
 
+    val selectedImages: ArrayList<File> = arrayListOf()
+
     lateinit var imageUtil: SelectImageUtil
+
+    val args by navArgs<AdditionalImagesFragmentArgs>()
+    val images by lazy {
+        args.additionalImages
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
+//        images.forEach {
+//            selectedImages.add(File(it))
+//        }
+
+        imageNumber = images.size
+
         val obs = MutableLiveData<Uri>()
         imageUtil = SelectImageUtil(this, obs)
         obs.observe(viewLifecycleOwner) {
             file = File(it.path)
             firstImageFile = it.path
 
-
+            selectedImages.add(file!!)
 
             when (imageNumber) {
                 1 -> {
                     binding.imgAdditionalImage.loadImage(file!!.path)
-
+                    binding.additionalImagesClose.show()
                 }
                 2 -> {
                     binding.imgAdditionalImage1.loadImage(file!!.path)
-
+                    binding.additionalImagesClose2.show()
                 }
                 3 -> {
                     binding.imgAdditionalImage2.loadImage(file!!.path)
-
+                    binding.additionalImagesClose3.show()
                 }
                 4 -> {
                     binding.imgAdditionalImage3.loadImage(file!!.path)
-
+                    binding.additionalImagesClose4.show()
                 }
                 5 -> {
                     binding.imgAdditionalImage4.loadImage(file!!.path)
-
+                    binding.additionalImagesClose5.show()
                 }
 
 
@@ -94,7 +112,11 @@ class AdditionalImagesFragment : BaseFragment() {
 
         binding.btnAddAdditionalImagesSave.setOnClickListener {
 
-            findNavController().popBackStack()
+            viewModel.updateAdditionalImages(selectedImages)
+            viewModel.isAdditionalImagesUploaded.observe(viewLifecycleOwner) {
+                if (it)
+                    findNavController().popBackStack()
+            }
 
         }
         binding.con.setOnClickListener {
@@ -133,6 +155,46 @@ class AdditionalImagesFragment : BaseFragment() {
         }
 
 
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if (images.isNotEmpty())
+            setupImages()
+    }
+
+    private fun setupImages() {
+        images.forEachIndexed { index, s ->
+            when (index) {
+                0 -> {
+                    binding.imgAdditionalImage.loadImage(s)
+                    binding.additionalImagesClose.show()
+                }
+
+                1 -> {
+                    binding.imgAdditionalImage1.loadImage(s)
+                    binding.additionalImagesClose2.show()
+                }
+
+                2 -> {
+                    binding.imgAdditionalImage2.loadImage(s)
+                    binding.additionalImagesClose3.show()
+                }
+
+                3 -> {
+                    binding.imgAdditionalImage3.loadImage(s)
+                    binding.additionalImagesClose4.show()
+                }
+
+                4 -> {
+                    binding.imgAdditionalImage4.loadImage(s)
+                    binding.additionalImagesClose5.show()
+                }
+
+
+            }
+        }
     }
 
 }

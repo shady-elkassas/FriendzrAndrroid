@@ -48,6 +48,7 @@ object UserSessionManagement {
     private val USER_LANG = "UserLang"
     private val USER_LAT = "UserLat"
     private val USER_KEY = "UserKey"
+    private val USER_ADDITIONAL_IMAGES = "UserAdditionalImages"
 
     private val USER_AGE_FROM = "UserAgeFrom"
     private val USER_AGE_TO = "UserAgeTo"
@@ -196,6 +197,13 @@ object UserSessionManagement {
         val type = object : TypeToken<List<TagsModel>>() {}.type//converting the json to list
         return gson.fromJson(json, type) //returning the list
 
+    }
+
+    fun getUserAdditionalImages(images: String): List<String> {
+        val gson = Gson()
+        val json = pref.getString(images, "[]")
+        val type = object : TypeToken<List<String>>() {}.type//converting the json to list
+        return gson.fromJson(json, type) //returning the list
     }
 
 
@@ -381,6 +389,8 @@ object UserSessionManagement {
         var interestsList: ArrayList<String> = ArrayList()
 
 
+        editor.putString(USER_ADDITIONAL_IMAGES, Gson().toJson(data.userImages))
+
 
         for (i in data.listoftagsmodel) {
             interestsList.add(i.tagID)
@@ -456,7 +466,8 @@ object UserSessionManagement {
         needUpdate = pref.getInt(USER_NEED_TO_UPDATE, 0),
         lang = pref.getString(USER_LANG, ""),
         lat = pref.getString(USER_LAT, ""),
-        key = pref.getInt(USER_KEY, 0)
+        key = pref.getInt(USER_KEY, 0),
+        userImages = getUserAdditionalImages(USER_ADDITIONAL_IMAGES)
     )
 
 

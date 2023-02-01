@@ -1,5 +1,6 @@
 package com.friendzrandroid.home.fragment.home.map
 
+import android.location.Criteria
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -36,17 +37,25 @@ class MapViewModel @Inject constructor(
     val allLocationEvents: LiveData<List<EventMapResponseItem>> = _allLocationEvents
 
 
-
     private val _eventsByLocation =
         MutableLiveData<List<EventMapData>>()
     var _eventsGD =
         MutableLiveData<List<LocationGenderDistribution>>()
-    fun getAroundMeData(filterSelectedTags: String) {
+
+    fun getAroundMeData(
+        filterSelectedTags: String,
+        dateCriteria: String?,
+        startDate: String?,
+        endDate: String?
+    ) {
 
         eventAroundMeUseCase.execute(
             MapFilterRequest(
                 LatLng(userLat, userLong),
-                filterSelectedTags
+                filterSelectedTags,
+                dateCriteria,
+                startDate,
+                endDate
             )
         ).flowOn(Dispatchers.IO).onEach {
             val response = validateResponse(it)
@@ -62,6 +71,7 @@ class MapViewModel @Inject constructor(
             }
         }.launchIn(viewModelScope)
     }
+
     fun getEventsByLocation(params: LatLng) {
         eventsByLocationUseCase.execute(params).flowOn(Dispatchers.IO).onEach {
             val response = validateResponse(it)

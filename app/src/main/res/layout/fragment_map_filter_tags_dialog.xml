@@ -76,7 +76,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <RadioGroup
-            android:id="@+id/rbProfileRadioGroup"
+            android:id="@+id/rbFilterEventsRadioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="25dp"

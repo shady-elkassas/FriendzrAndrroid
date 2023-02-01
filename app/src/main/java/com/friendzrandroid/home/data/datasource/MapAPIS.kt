@@ -9,14 +9,17 @@ import retrofit2.http.*
 
 interface MapAPIS {
 
-    @POST("Events/Eventsaroundme")
+    @POST("Events/EventsAroundUser")
     @FormUrlEncoded
     @Headers("Content-Type: application/x-www-form-urlencoded")
     suspend fun getEventsAroundMe(
         @Header("Authorization") authHeader: String,
         @Field("categories") filterSelectedTags: String,
         @Field("lang") lang: Double,
-        @Field("lat") lat: Double
+        @Field("lat") lat: Double,
+        @Field("dateCriteria") dateCriteria: String?,
+        @Field("startDate") startDate: String?,
+        @Field("endDate") endDate: String?
     ): Response<BaseDataWrapper<EventAroundMeResponse>>
 
     @FormUrlEncoded

@@ -22,6 +22,9 @@ class OnlyEventsAroundMeViewModel @Inject constructor(private val onlyEventsArou
     var userLat: Double = 0.0
     var userLang: Double = 0.0
     var filterSelectedTags: String = ""
+    var dateCriteria: String? = null
+    var startData: String? = null
+    var endData: String? = null
 
     override fun loadData() {
 
@@ -34,8 +37,10 @@ class OnlyEventsAroundMeViewModel @Inject constructor(private val onlyEventsArou
                     pageNumber,
                     userLat,
                     userLang,
-                    filterSelectedTags = filterSelectedTags
-
+                    filterSelectedTags = filterSelectedTags,
+                    dateCriteria = dateCriteria,
+                    startDate = startData,
+                    endDate = endData
                 )
             )
                 .flowOn(Dispatchers.IO)

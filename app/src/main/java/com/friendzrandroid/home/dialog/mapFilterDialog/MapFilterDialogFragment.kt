@@ -3,6 +3,7 @@ package com.friendzrandroid.home.dialog.mapFilterDialog
 import android.app.DatePickerDialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,30 +11,33 @@ import android.widget.DatePicker
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.FragmentManager
-import com.applovin.impl.sdk.utils.Utils.showToast
-import com.facebook.appevents.codeless.internal.ViewHierarchy.setOnClickListener
 import com.friendzrandroid.R
-import com.friendzrandroid.core.utils.*
+import com.friendzrandroid.core.utils.Constants
+import com.friendzrandroid.core.utils.show
+import com.friendzrandroid.core.utils.showToast
 import com.friendzrandroid.databinding.FragmentMapFilterTagsDialogBinding
-import com.friendzrandroid.databinding.FragmentTagsDialogBinding
 import com.friendzrandroid.home.data.model.InterestData
 import com.friendzrandroid.home.data.model.TagsModel
-import com.friendzrandroid.home.dialog.tagsDialog.TagDialogListener
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipDrawable
 import java.util.*
-import kotlin.collections.ArrayList
 
 class MapFilterDialogFragment(
     val title: String,
     val allTags: ArrayList<InterestData>,
     val selectedTags: ArrayList<TagsModel>,
+    val dateCriteria: String?,
+    val startDate: String?,
+    val endDate: String?,
     val listener: MapFilterDialogListener
 ) :
     BottomSheetDialogFragment() {
 
     private val updateSelectedTags = ArrayList<TagsModel>()
+    private var updateDateCriteria: String? = null
+    private var updateStartDate: String? = null
+    private var updateEndDate: String? = null
 
     private val binding by lazy(LazyThreadSafetyMode.NONE) {
         FragmentMapFilterTagsDialogBinding.inflate(layoutInflater)
@@ -70,8 +74,15 @@ class MapFilterDialogFragment(
         addChipsViews()
 //        binding.dialogTitle.text = title
 
+        Log.e("mapFilter", "onCreateView: $dateCriteria, $startDate, $endDate")
+
         binding.saveBtn.setOnClickListener {
-            listener.onMapFilterSave(updateSelectedTags)
+            listener.onMapFilterSave(
+                updateSelectedTags,
+                updateDateCriteria,
+                updateStartDate,
+                updateEndDate
+            )
             dismiss()
 
         }
@@ -80,18 +91,30 @@ class MapFilterDialogFragment(
 //
 //        }
 
+        binding.rbFilterEventsRadioGroup.setOnCheckedChangeListener { radioGroup, i ->
+            when (i) {
+                R.id.rbToday -> updateDateCriteria = "ThisDay"
+                R.id.rbthisMonth -> updateDateCriteria = "ThisMonth"
+                R.id.rbthisWeek -> updateDateCriteria = "ThisWeek"
+            }
+        }
+
+
         binding.rbCustom.setOnCheckedChangeListener { buttonView, isChecked ->
 
 
-            if (isChecked){
+            if (isChecked) {
                 binding.rbDateStart.show()
                 binding.rbDateEnd.show()
 
-            }else{
-                binding.rbDateStart.visibility=View.INVISIBLE
-                binding.rbDateStart.text=""
-                binding.rbDateEnd.visibility=View.INVISIBLE
-                binding.rbDateEnd.text=""
+            } else {
+                binding.rbDateStart.visibility = View.INVISIBLE
+                binding.rbDateStart.text = ""
+                binding.rbDateEnd.visibility = View.INVISIBLE
+                binding.rbDateEnd.text = ""
+
+                updateStartDate = null
+                updateEndDate = null
 
             }
         }
@@ -113,17 +136,40 @@ class MapFilterDialogFragment(
                 showDatePickerDialog(date, date.time.time, binding.rbDateEnd, false)
 
 
-
             } else {
-                Toast(requireContext()).showToast(activity, resources.getString(R.string.error_event_datefrom))
+                Toast(requireContext()).showToast(
+                    activity,
+                    resources.getString(R.string.error_event_datefrom)
+                )
 
             }
         }
 
+        if (startDate != null || endDate != null) {
 
+            updateStartDate = startDate
+            updateEndDate = endDate
+
+            binding.rbCustom.isChecked = true
+            binding.rbDateStart.text = startDate ?: ""
+            binding.rbDateEnd.text = endDate ?: ""
+        }
+
+
+        if (dateCriteria != null) {
+
+            updateDateCriteria = dateCriteria
+
+            when (dateCriteria) {
+                "ThisDay" -> binding.rbFilterEventsRadioGroup.check(R.id.rbToday)
+                "ThisMonth" -> binding.rbFilterEventsRadioGroup.check(R.id.rbthisMonth)
+                "ThisWeek" -> binding.rbFilterEventsRadioGroup.check(R.id.rbthisWeek)
+            }
+        }
 
         return binding.root
     }
+
     private fun showDatePickerDialog(
         date: Calendar,
         minDate: Long,
@@ -143,9 +189,11 @@ class MapFilterDialogFragment(
                     if (isFrom) {
 //                        viewModel.dateFrom.value = results.first
                         viewText.text = results.second
+                        updateStartDate = results.second
                     } else {
 //                        viewModel.dateTo.value = results.first
                         viewText.text = results.second
+                        updateEndDate = results.second
                     }
                     //binding.addEventDateFromValue.setText(results.second)
                 }
@@ -219,16 +267,21 @@ class MapFilterDialogFragment(
             title: String,
             allTags: ArrayList<InterestData>,
             selectedTags: ArrayList<TagsModel>,
-            lisener: MapFilterDialogListener,
+            dateCriteria: String?,
+            startDate: String?,
+            endDate: String?,
+            lisener: MapFilterDialogListener
         ) {
             val dialog =
                 MapFilterDialogFragment(
                     title,
                     allTags,
                     selectedTags,
-                    lisener,
-
-                    )
+                    dateCriteria,
+                    startDate,
+                    endDate,
+                    lisener
+                )
             dialog.setStyle(
                 STYLE_NO_TITLE,
                 R.style.AppBottomSheetDialogTheme

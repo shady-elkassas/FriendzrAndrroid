@@ -23,18 +23,30 @@ class MapRepository @Inject constructor(private val mapApi: MapAPIS) : SafeApiRe
     }
 
 
-    suspend fun getAroundMeEvents(params: LatLng,filterSelectedTags:String): ResultWrapper<BaseDataWrapper<EventAroundMeResponse>> {
+    suspend fun getAroundMeEvents(
+        params: LatLng,
+        filterSelectedTags: String,
+        dateCriteria: String?,
+        startDate: String?,
+        endDate: String?,
+    ): ResultWrapper<BaseDataWrapper<EventAroundMeResponse>> {
 
         val token = UserSessionManagement.getKeyAuthToken()
 
         return apiRequest {
             if (token != null && !token.equals("")) {
 
-                mapApi.getEventsAroundMe(token,filterSelectedTags,params.longitude, params.latitude)
+                mapApi.getEventsAroundMe(
+                    token,
+                    filterSelectedTags,
+                    params.longitude,
+                    params.latitude,
+                    dateCriteria, startDate, endDate
+                )
 
             } else {
 
-                mapApi.getEventsAroundMePublic(    params.longitude, params.latitude)
+                mapApi.getEventsAroundMePublic(params.longitude, params.latitude)
 
             }
 

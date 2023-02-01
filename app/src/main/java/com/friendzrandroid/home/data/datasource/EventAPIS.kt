@@ -38,7 +38,7 @@ interface EventAPIS {
     ): Response<BaseDataWrapper<EventsResponse>>
 
 
-    @POST("Events/OnlyEventsAround")
+    @POST("Events/OnlyEventsAroundUser")
     @FormUrlEncoded
     suspend fun getOnlyEventsAround(
         @Header("Authorization") authHeader: String,
@@ -46,7 +46,10 @@ interface EventAPIS {
         @Field("pageNumber") pageNumber: Int,
         @Field("lat") lat: Double,
         @Field("lang") lang: Double,
-        @Field("categories") filterSelectedTags: String
+        @Field("categories") filterSelectedTags: String,
+        @Field("dateCriteria") dateCriteria: String?,
+        @Field("startDate") startDate: String?,
+        @Field("endDate") endDate: String?
     ): Response<BaseDataWrapper<EventsResponse>>
 
 

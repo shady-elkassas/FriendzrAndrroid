@@ -14,7 +14,7 @@ import javax.inject.Inject
 class AccountRepository @Inject constructor(private val api: AccountAPIS) : SafeApiRequest() {
 
 
-    suspend fun updateAdditionalImages(images: ArrayList<MultipartBody.Part>): ResultWrapper<Any> {
+    suspend fun updateAdditionalImages(images: List<MultipartBody.Part>): ResultWrapper<Any> {
         val token = UserSessionManagement.getKeyAuthToken()
         return apiRequest {
             api.updateAdditionalImages(token!!, images)

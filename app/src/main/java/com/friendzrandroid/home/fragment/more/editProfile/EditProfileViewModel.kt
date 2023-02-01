@@ -331,7 +331,7 @@ class EditProfileViewModel @Inject constructor(
         images.forEachIndexed { index, file ->
             listOfImages.add(
                 MultipartBody.Part.createFormData(
-                    "files[$index]",
+                    "files",
                     URLEncoder.encode(file.name, "utf-8"),
                     RequestBody.create("image/*".toMediaTypeOrNull(), file)
                 )

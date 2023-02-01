@@ -107,7 +107,7 @@ interface AccountAPIS {
     @Multipart
     suspend fun updateAdditionalImages(
         @Header("Authorization") authHeader: String,
-        @Part files: ArrayList<MultipartBody.Part>
+        @Part images: List<MultipartBody.Part>
     ): Response<BaseDataWrapper<Any>>
 
 }

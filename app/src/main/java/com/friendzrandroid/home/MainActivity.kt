@@ -336,6 +336,7 @@ class MainActivity : BaseActivity() {
 
                 com.friendzrandroid.R.id.detailsGroupChatFragment -> navView.visibility = View.GONE
                 com.friendzrandroid.R.id.eventsFragment -> navView.visibility = View.GONE
+                com.friendzrandroid.R.id.additionalImagesFragment -> navView.visibility = View.GONE
                 com.friendzrandroid.R.id.addEventFragment -> navView.visibility = View.GONE
                 com.friendzrandroid.R.id.eventDetailsFragment -> navView.visibility = View.GONE
                 com.friendzrandroid.R.id.editEventFragment -> navView.visibility = View.GONE

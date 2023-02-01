@@ -94,11 +94,28 @@
                         app:layout_constraintTop_toTopOf="parent">
 
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/images_arrow" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentStart="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/images_arrow"
+                            android:rotation="180" />
+
                         <ImageView
                             android:id="@+id/userProfileImage"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:scaleType="center"/>
+                            android:scaleType="center" />
 
                         <com.facebook.shimmer.ShimmerFrameLayout
                             android:id="@+id/ShimmerUserImage"
@@ -255,11 +272,11 @@
                                     android:paddingStart="7dp"
                                     android:paddingEnd="7dp"
 
-                                    android:visibility="gone"
                                     android:text="@string/block"
                                     android:textAllCaps="false"
                                     android:textColor="@color/white"
-                                    android:textSize="12sp" />
+                                    android:textSize="12sp"
+                                    android:visibility="gone" />
 
                                 <Button
                                     android:id="@+id/btn_user_profile_Message"
@@ -499,12 +516,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="25dp"
                         android:layout_marginTop="16dp"
-                        app:layout_constraintStart_toStartOf="parent"
                         android:fontFamily="@font/montserrat_semibold"
                         android:text="@string/title_aboutMe"
                         android:textColor="@color/title_black"
-                        app:layout_constraintTop_toBottomOf="@+id/profileUserPreferTags"
-                        />
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/profileUserPreferTags" />
 
                     <com.facebook.shimmer.ShimmerFrameLayout
                         android:id="@+id/ShimmerUserBio"

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.friendzrandroid.R
 import com.friendzrandroid.core.presentation.ui.BaseFragment
 import com.friendzrandroid.core.presentation.viewmodel.BaseViewModel
@@ -38,10 +39,24 @@ class AdditionalImagesFragment : BaseFragment() {
     val selectedImages: ArrayList<File> = arrayListOf()
 
     lateinit var imageUtil: SelectImageUtil
+
+    val args by navArgs<AdditionalImagesFragmentArgs>()
+    val images by lazy {
+        args.additionalImages
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
+//        images.forEach {
+//            selectedImages.add(File(it))
+//        }
+
+        imageNumber = images.size
+
         val obs = MutableLiveData<Uri>()
         imageUtil = SelectImageUtil(this, obs)
         obs.observe(viewLifecycleOwner) {
@@ -98,8 +113,10 @@ class AdditionalImagesFragment : BaseFragment() {
         binding.btnAddAdditionalImagesSave.setOnClickListener {
 
             viewModel.updateAdditionalImages(selectedImages)
-
-//            findNavController().popBackStack()
+            viewModel.isAdditionalImagesUploaded.observe(viewLifecycleOwner) {
+                if (it)
+                    findNavController().popBackStack()
+            }
 
         }
         binding.con.setOnClickListener {
@@ -138,6 +155,46 @@ class AdditionalImagesFragment : BaseFragment() {
         }
 
 
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        if (images.isNotEmpty())
+            setupImages()
+    }
+
+    private fun setupImages() {
+        images.forEachIndexed { index, s ->
+            when (index) {
+                0 -> {
+                    binding.imgAdditionalImage.loadImage(s)
+                    binding.additionalImagesClose.show()
+                }
+
+                1 -> {
+                    binding.imgAdditionalImage1.loadImage(s)
+                    binding.additionalImagesClose2.show()
+                }
+
+                2 -> {
+                    binding.imgAdditionalImage2.loadImage(s)
+                    binding.additionalImagesClose3.show()
+                }
+
+                3 -> {
+                    binding.imgAdditionalImage3.loadImage(s)
+                    binding.additionalImagesClose4.show()
+                }
+
+                4 -> {
+                    binding.imgAdditionalImage4.loadImage(s)
+                    binding.additionalImagesClose5.show()
+                }
+
+
+            }
+        }
     }
 
 }

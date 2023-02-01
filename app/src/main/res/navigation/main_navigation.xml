@@ -653,5 +653,9 @@
     <fragment
         android:id="@+id/additionalImagesFragment"
         android:name="com.friendzrandroid.home.fragment.more.editProfile.AdditionalImagesFragment"
-        android:label="AdditionalImagesFragment" />
+        android:label="AdditionalImagesFragment" >
+        <argument
+            android:name="additionalImages"
+            app:argType="string[]" />
+    </fragment>
 </navigation>

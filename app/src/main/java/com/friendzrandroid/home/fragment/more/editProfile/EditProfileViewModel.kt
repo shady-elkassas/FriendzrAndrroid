@@ -59,6 +59,8 @@ class EditProfileViewModel @Inject constructor(
 
     val isLoggedOut = MutableLiveData<Boolean>()
 
+    val isAdditionalImagesUploaded: MutableLiveData<Boolean> = MutableLiveData()
+
     var userYear: Int = 0
     var userMonth: Int = 0
     var userDay: Int = 0
@@ -344,6 +346,7 @@ class EditProfileViewModel @Inject constructor(
                 val result = validateResponse(it)
                 result?.let {
                     Log.e("Additional Images", "updateAdditionalImages: $it")
+                    isAdditionalImagesUploaded.value = true
                 }
             }.launchIn(viewModelScope)
 

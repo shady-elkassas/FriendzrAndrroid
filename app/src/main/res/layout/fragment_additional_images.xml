@@ -292,7 +292,7 @@
                                     android:src="@drawable/place_holder" />
 
                                 <ImageView
-                                    android:id="@+id/additional_images_close4"
+                                    android:id="@+id/additional_images_close3"
                                     android:layout_width="20dp"
                                     android:layout_height="20dp"
                                     android:layout_gravity="right"
@@ -357,7 +357,7 @@
                                     android:src="@drawable/place_holder" />
 
                                 <ImageView
-                                    android:id="@+id/additional_images_close3"
+                                    android:id="@+id/additional_images_close4"
                                     android:layout_width="20dp"
                                     android:layout_height="20dp"
                                     android:layout_gravity="right"

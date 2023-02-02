@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,9 +18,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
+import com.friendzrandroid.R
 import com.friendzrandroid.core.presentation.ui.BaseFragment
 import com.friendzrandroid.core.presentation.viewmodel.BaseViewModel
 import com.friendzrandroid.core.utils.SelectImageUtil
+import com.friendzrandroid.core.utils.hide
 import com.friendzrandroid.core.utils.loadImage
 import com.friendzrandroid.core.utils.show
 import com.friendzrandroid.databinding.FragmentAdditionalImagesBinding
@@ -94,7 +97,10 @@ class AdditionalImagesFragment : BaseFragment() {
             file = File(it.path)
             firstImageFile = it.path
 
-            selectedImages.add(file!!)
+            if (imageNumber > selectedImages.size)
+                selectedImages.add(file!!)
+            else
+                selectedImages.add(imageNumber, file!!)
 
             when (imageNumber) {
                 1 -> {
@@ -134,11 +140,16 @@ class AdditionalImagesFragment : BaseFragment() {
     }
 
 
-    fun getImageUri( inImage: Bitmap): Uri? {
+    fun getImageUri(inImage: Bitmap): Uri? {
         val bytes = ByteArrayOutputStream()
         inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
         val path =
-            MediaStore.Images.Media.insertImage(requireContext().contentResolver, inImage, "Title", null)
+            MediaStore.Images.Media.insertImage(
+                requireContext().contentResolver,
+                inImage,
+                "Title",
+                null
+            )
         return Uri.parse(path)
     }
 
@@ -152,6 +163,8 @@ class AdditionalImagesFragment : BaseFragment() {
 
         binding.btnAddAdditionalImagesSave.setOnClickListener {
 
+            Log.e("images", "setClicks: ${selectedImages.size}")
+
             viewModel.updateAdditionalImages(selectedImages)
             viewModel.isAdditionalImagesUploaded.observe(viewLifecycleOwner) {
                 if (it)
@@ -159,39 +172,76 @@ class AdditionalImagesFragment : BaseFragment() {
             }
 
         }
-        binding.con.setOnClickListener {
+
+        binding.imgAdditionalImage.setOnClickListener {
             imageNumber = 1
-
             imageUtil.selectImage(false)
-
-
+        }
+        binding.additionalImagesClose.setOnClickListener {
+            binding.imgAdditionalImage.setImageResource(R.drawable.place_holder)
+            selectedImages.removeAt(0)
+            it.hide()
         }
 
-        binding.con1.setOnClickListener {
+
+        binding.imgAdditionalImage1.setOnClickListener {
             imageNumber = 2
-
             imageUtil.selectImage(false)
-
-
         }
-        binding.con2.setOnClickListener {
+        binding.additionalImagesClose2.setOnClickListener {
+            binding.imgAdditionalImage1.setImageResource(R.drawable.place_holder)
+
+            if (selectedImages.size < 2)
+                selectedImages.removeLast()
+            else
+                selectedImages.removeAt(1)
+            it.hide()
+        }
+
+
+        binding.imgAdditionalImage2.setOnClickListener {
             imageNumber = 3
-
             imageUtil.selectImage(false)
-
         }
-        binding.con3.setOnClickListener {
+        binding.additionalImagesClose3.setOnClickListener {
+            binding.imgAdditionalImage2.setImageResource(R.drawable.place_holder)
+
+            if (selectedImages.size < 3)
+                selectedImages.removeLast()
+            else
+                selectedImages.removeAt(2)
+            it.hide()
+        }
+
+        binding.imgAdditionalImage3.setOnClickListener {
             imageNumber = 4
-
             imageUtil.selectImage(false)
-
-
         }
-        binding.con4.setOnClickListener {
+        binding.additionalImagesClose4.setOnClickListener {
+            binding.imgAdditionalImage3.setImageResource(R.drawable.place_holder)
+
+            if (selectedImages.size < 4)
+                selectedImages.removeLast()
+            else
+                selectedImages.removeAt(3)
+
+            it.hide()
+        }
+
+
+        binding.imgAdditionalImage4.setOnClickListener {
             imageNumber = 5
             imageUtil.selectImage(false)
+        }
+        binding.additionalImagesClose5.setOnClickListener {
+            binding.imgAdditionalImage4.setImageResource(R.drawable.place_holder)
 
+            if (selectedImages.size < 5)
+                selectedImages.removeLast()
+            else
+                selectedImages.removeAt(4)
 
+            it.hide()
         }
 
 

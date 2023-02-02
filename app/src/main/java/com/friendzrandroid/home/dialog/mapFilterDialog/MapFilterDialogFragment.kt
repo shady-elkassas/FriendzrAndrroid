@@ -39,6 +39,8 @@ class MapFilterDialogFragment(
     private var updateStartDate: String? = null
     private var updateEndDate: String? = null
 
+    private var isClear = false
+
     private val binding by lazy(LazyThreadSafetyMode.NONE) {
         FragmentMapFilterTagsDialogBinding.inflate(layoutInflater)
     }
@@ -92,11 +94,23 @@ class MapFilterDialogFragment(
 //        }
 
         binding.rbFilterEventsRadioGroup.setOnCheckedChangeListener { radioGroup, i ->
-            when (i) {
-                R.id.rbToday -> updateDateCriteria = "ThisDay"
-                R.id.rbthisMonth -> updateDateCriteria = "ThisMonth"
-                R.id.rbthisWeek -> updateDateCriteria = "ThisWeek"
-            }
+            if (!isClear)
+                when (i) {
+                    R.id.rbToday -> {
+                        binding.rbCustom.isChecked = false
+                        updateDateCriteria = "ThisDay"
+                    }
+                    R.id.rbthisMonth -> {
+                        binding.rbCustom.isChecked = false
+                        updateDateCriteria = "ThisMonth"
+                    }
+                    R.id.rbthisWeek -> {
+                        binding.rbCustom.isChecked = false
+                        updateDateCriteria = "ThisWeek"
+                    }
+                }
+            else
+                isClear = false
         }
 
 
@@ -106,6 +120,10 @@ class MapFilterDialogFragment(
             if (isChecked) {
                 binding.rbDateStart.show()
                 binding.rbDateEnd.show()
+
+                isClear = true
+                binding.rbFilterEventsRadioGroup.clearCheck()
+                updateDateCriteria = null
 
             } else {
                 binding.rbDateStart.visibility = View.INVISIBLE

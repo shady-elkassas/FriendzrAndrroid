@@ -21,11 +21,9 @@ import com.bumptech.glide.request.transition.Transition
 import com.friendzrandroid.R
 import com.friendzrandroid.core.presentation.ui.BaseFragment
 import com.friendzrandroid.core.presentation.viewmodel.BaseViewModel
-import com.friendzrandroid.core.utils.SelectImageUtil
-import com.friendzrandroid.core.utils.hide
-import com.friendzrandroid.core.utils.loadImage
-import com.friendzrandroid.core.utils.show
+import com.friendzrandroid.core.utils.*
 import com.friendzrandroid.databinding.FragmentAdditionalImagesBinding
+import com.friendzrandroid.home.data.model.enum.NeedToUpdateStatus
 import com.friendzrandroid.utils.FileUtliKotlin
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -51,9 +49,9 @@ class AdditionalImagesFragment : BaseFragment() {
 
     lateinit var imageUtil: SelectImageUtil
 
-    val args by navArgs<AdditionalImagesFragmentArgs>()
-    val images by lazy {
-        args.additionalImages
+    //    val args: AdditionalImagesFragmentArgs by navArgs()
+    val images: Array<String>? by lazy {
+        arguments?.getStringArray("additionalImages")
     }
 
     override fun onCreateView(
@@ -62,7 +60,7 @@ class AdditionalImagesFragment : BaseFragment() {
     ): View? {
 
 
-        images.forEach {
+        images?.forEach {
 
             Glide.with(requireContext())
                 .asBitmap()
@@ -89,7 +87,7 @@ class AdditionalImagesFragment : BaseFragment() {
 
         }
 
-        imageNumber = images.size
+        imageNumber = images?.size ?: 0
 
         val obs = MutableLiveData<Uri>()
         imageUtil = SelectImageUtil(this, obs)
@@ -167,7 +165,9 @@ class AdditionalImagesFragment : BaseFragment() {
 
             viewModel.updateAdditionalImages(selectedImages)
             viewModel.isAdditionalImagesUploaded.observe(viewLifecycleOwner) {
-                if (it)
+                if (it && UserSessionManagement.userNeedToUpdate() == NeedToUpdateStatus.UPDATE_PROFILE.status)
+                    requireActivity().supportFragmentManager.popBackStack()
+                else
                     findNavController().popBackStack()
             }
 
@@ -250,12 +250,12 @@ class AdditionalImagesFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (images.isNotEmpty())
+        if (images?.isNotEmpty() == true)
             setupImages()
     }
 
     private fun setupImages() {
-        images.forEachIndexed { index, s ->
+        images?.forEachIndexed { index, s ->
             when (index) {
                 0 -> {
                     binding.imgAdditionalImage.loadImage(s)

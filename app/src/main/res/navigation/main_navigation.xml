@@ -656,6 +656,8 @@
         android:label="AdditionalImagesFragment" >
         <argument
             android:name="additionalImages"
-            app:argType="string[]" />
+            app:argType="string[]"
+            app:nullable="true"
+            android:defaultValue="@null" />
     </fragment>
 </navigation>

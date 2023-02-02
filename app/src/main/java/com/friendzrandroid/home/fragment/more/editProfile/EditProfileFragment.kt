@@ -17,6 +17,7 @@ import android.widget.DatePicker
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.app.imagepickerlibrary.ImagePicker
 import com.app.imagepickerlibrary.ImagePicker.Companion.registerImagePicker
@@ -41,6 +42,7 @@ import com.friendzrandroid.home.dialog.ImageVerificationDialog
 import com.friendzrandroid.home.dialog.tagsDialog.TagDialogListener
 import com.friendzrandroid.home.dialog.tagsDialog.TagsDialogFragment
 import com.friendzrandroid.home.fragment.more.myProfile.MyProfileFragmentDirections
+import com.friendzrandroid.splash.presentation.activity.IntroActivity
 import com.friendzrandroid.utils.ProfileUtil
 import com.google.android.material.chip.ChipGroup
 import dagger.hilt.android.AndroidEntryPoint
@@ -421,17 +423,38 @@ class EditProfileFragment : BaseFragment(), TagDialogListener, ImagePickerResult
         }
     }
 
+    private fun goToFragment(
+        argumentIdKey: String,
+        argumentIdValue: String,
+        fragment: Int
+    ) {
+        val navController = MainActivity().findNavController(
+            R.id.nav_host_fragment_activity_main
+        )
+
+        val bundle = Bundle()
+        bundle.putString(argumentIdKey, argumentIdValue)
+        navController.navigate(fragment, bundle)
+    }
+
     private fun setClicks() {
 
         binding.btnEditProfileAddAdditionalImages.setOnClickListener {
 //            AdditionalImagesDialog(this).showDialog(requireContext())
 //            checkPermissionForImage()
 
-            findNavController().navigate(
-                EditProfileFragmentDirections.actionEditProfileFragmentToAdditionalImagesFragment(
-                    additionalImages.toTypedArray()
+            if (UserSessionManagement.userNeedToUpdate() == NeedToUpdateStatus.UPDATE_PROFILE.status){
+                val transaction = requireActivity().supportFragmentManager.beginTransaction()
+                transaction.replace(R.id.flMainMainContainer, AdditionalImagesFragment())
+                transaction.addToBackStack(null)
+                transaction.commit()
+            }
+            else
+                findNavController().navigate(
+                    EditProfileFragmentDirections.actionEditProfileFragmentToAdditionalImagesFragment(
+                        additionalImages.toTypedArray()
+                    )
                 )
-            )
 
         }
         binding.btnEditProfileLogout.setOnClickListener {

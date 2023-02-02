@@ -126,6 +126,7 @@ class MyProfileFragment : BaseFragment() {
 
     private fun setUserData(data: UserProfileData) {
 
+        userAdditionalImages.clear()
         userImage = data.userImage
         userAdditionalImages.add(userImage)
 

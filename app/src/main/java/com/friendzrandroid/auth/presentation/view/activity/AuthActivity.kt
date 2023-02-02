@@ -404,7 +404,7 @@ class AuthActivity : BaseActivity() {
 
     }
 
-
+/*
     override fun onBackPressed() {
 
         if (UserSessionManagement.userNeedToUpdate() == NeedToUpdateStatus.UPDATE_PROFILE.status) {
@@ -422,7 +422,7 @@ class AuthActivity : BaseActivity() {
 
             }
         }
-    }
+    }*/
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         socialMediaLogin.callbackManager?.onActivityResult(requestCode, resultCode, data)

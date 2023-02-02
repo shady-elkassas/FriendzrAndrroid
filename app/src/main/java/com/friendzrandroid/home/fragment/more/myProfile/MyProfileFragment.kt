@@ -149,6 +149,7 @@ class MyProfileFragment : BaseFragment() {
             }
 
         }
+
         profileImagesAdapter = ProfileImagesAdapter(userAdditionalImages) {
             ImageDialog.setImageBigger(requireActivity(), it)
         }

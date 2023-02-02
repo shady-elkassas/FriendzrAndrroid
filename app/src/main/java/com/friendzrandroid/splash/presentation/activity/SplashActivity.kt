@@ -47,20 +47,20 @@ class SplashActivity : AppCompatActivity() {
             if (!userLoggedIn) {
 
 //                Log.e("AuthToken", UserSessionManagement.getKeyAuthToken()!!)
-//                startActivity(Intent(this@SplashActivity, AuthActivity::class.java).apply {
-//                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-//                })
+                startActivity(Intent(this@SplashActivity, AuthActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+                })
 
 //                startActivity(Intent(this@SplashActivity, MainActivity::class.java).apply {
 //                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
 //                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
 //                })
 
-                startActivity(Intent(this@SplashActivity, LandinPageActivity::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
-                })
+//                startActivity(Intent(this@SplashActivity, LandinPageActivity::class.java).apply {
+//                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+//                })
 
 
             } else {

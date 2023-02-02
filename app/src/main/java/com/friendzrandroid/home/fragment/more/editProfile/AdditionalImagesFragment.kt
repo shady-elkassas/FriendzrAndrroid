@@ -1,8 +1,11 @@
 package com.friendzrandroid.home.fragment.more.editProfile
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,17 +13,22 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.friendzrandroid.R
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
+import com.bumptech.glide.request.target.CustomTarget
+import com.bumptech.glide.request.transition.Transition
 import com.friendzrandroid.core.presentation.ui.BaseFragment
 import com.friendzrandroid.core.presentation.viewmodel.BaseViewModel
 import com.friendzrandroid.core.utils.SelectImageUtil
 import com.friendzrandroid.core.utils.loadImage
 import com.friendzrandroid.core.utils.show
 import com.friendzrandroid.databinding.FragmentAdditionalImagesBinding
-
+import com.friendzrandroid.utils.FileUtliKotlin
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import java.io.ByteArrayOutputStream
 import java.io.File
+
 
 @ExperimentalCoroutinesApi
 @AndroidEntryPoint
@@ -51,9 +59,32 @@ class AdditionalImagesFragment : BaseFragment() {
     ): View? {
 
 
-//        images.forEach {
-//            selectedImages.add(File(it))
-//        }
+        images.forEach {
+
+            Glide.with(requireContext())
+                .asBitmap()
+                .load(it)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .into(object : CustomTarget<Bitmap>(SIZE_ORIGINAL, SIZE_ORIGINAL) {
+                    override fun onLoadCleared(placeholder: Drawable?) {}
+                    override fun onResourceReady(
+                        resource: Bitmap,
+                        transition: Transition<in Bitmap>?
+                    ) {
+                        //Save image file
+                        val imageUri = getImageUri(resource)
+
+                        if (imageUri != null) {
+                            val path = FileUtliKotlin().getPath(requireContext(), imageUri)
+                            selectedImages.add(File(path))
+
+                        }
+                    }
+
+                })
+
+
+        }
 
         imageNumber = images.size
 
@@ -100,6 +131,15 @@ class AdditionalImagesFragment : BaseFragment() {
     private fun setObserve() {
 
 
+    }
+
+
+    fun getImageUri( inImage: Bitmap): Uri? {
+        val bytes = ByteArrayOutputStream()
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path =
+            MediaStore.Images.Media.insertImage(requireContext().contentResolver, inImage, "Title", null)
+        return Uri.parse(path)
     }
 
     private fun setClicks() {
